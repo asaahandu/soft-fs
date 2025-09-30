@@ -1212,8 +1212,8 @@ export default function HomePage() {
                     <motion.div 
                       className="w-8 sm:w-10 md:w-12 h-0.5 sm:h-0.5 md:h-1 rounded-full mx-auto" 
                       style={{ background: 'linear-gradient(to right, #3B4D8F, #A5A6C8)' }}
-                      initial={{ opacity: 0, width: 0 }}
-                      whileHover={{ opacity: 1, width: window.innerWidth < 640 ? 32 : window.innerWidth < 768 ? 40 : 48 }}
+                      initial={{ opacity: 0, scaleX: 0 }}
+                      whileHover={{ opacity: 1, scaleX: 1 }}
                       transition={{ duration: 0.3 }}
                     ></motion.div>
                   </div>

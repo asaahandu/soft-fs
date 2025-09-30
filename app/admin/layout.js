@@ -201,15 +201,13 @@ export default function AdminLayout({ children }) {
         <div className="p-3 sm:p-4 border-t border-gray-100 space-y-1 sm:space-y-2">
           <Link
             href="/"
+            onClick={handleNavigation}
             className="flex items-center gap-3 px-3 sm:px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg sm:rounded-xl transition-colors text-sm font-medium group touch-manipulation"
           >
             <div className="w-8 h-8 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-colors flex-shrink-0">
               <Home className="w-4 h-4" />
             </div>
-            <button
-              onClick={() => { window.location.href = '/'; }}
-            className="truncate">Retour au site
-            </button>
+            <span className="truncate">Retour au site</span>
           </Link>
           <button 
             className="w-full flex items-center gap-3 px-3 sm:px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg sm:rounded-xl transition-colors text-sm font-medium group touch-manipulation"
