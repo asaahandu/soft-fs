@@ -36,12 +36,12 @@ const sidebarNavigation = [
     icon: BarChart3,
     description: 'Vue d\'ensemble et statistiques'
   },
-  {
+ {/* {
     name: 'Demandes',
     href: '/admin/requests',
     icon: FileText,
     description: 'Gestion des demandes clients'
-  },
+  }, */}
 ];
 
 export default function AdminLayout({ children }) {
