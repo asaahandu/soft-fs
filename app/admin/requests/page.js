@@ -19,7 +19,6 @@ import {
 } from 'lucide-react';
 
 export default function AdminRequestsPage() {
-  const { requests, loading, error, deleteRequest, updateRequest, refreshRequests } = useServiceRequests();
   const [filter, setFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('newest');
