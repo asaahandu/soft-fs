@@ -1,5 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
 import { 
   BarChart3, 
   Users, 
@@ -179,7 +183,7 @@ const serviceIcons = {
   "Audit des Systèmes d'Information & Fourniture informatiques": Shield
 };
 
-export default function AdminDashboard() {
+function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -729,3 +733,16 @@ export default function AdminDashboard() {
     </div>
   );
 }
+
+// Export the component with dynamic import to prevent SSR issues
+export default dynamic(() => Promise.resolve(AdminDashboard), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600">Chargement du tableau de bord...</p>
+      </div>
+    </div>
+  )
+});

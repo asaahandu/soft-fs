@@ -2,6 +2,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
+// Force dynamic rendering for admin routes
+export const dynamic = 'force-dynamic';
 import { 
   BarChart3, 
   Users, 
@@ -44,7 +48,7 @@ const sidebarNavigation = [
   }, */}
 ];
 
-export default function AdminLayout({ children }) {
+function AdminLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
@@ -288,3 +292,16 @@ export default function AdminLayout({ children }) {
     </div>
   );
 }
+
+// Export the component with dynamic import to prevent SSR issues
+export default dynamic(() => Promise.resolve(AdminLayout), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600">Chargement...</p>
+      </div>
+    </div>
+  )
+});
