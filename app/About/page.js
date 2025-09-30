@@ -26,6 +26,7 @@ import {
   ArrowRight,
   Play
 } from "lucide-react"
+import { motion } from "framer-motion"
 import Header from "../components/header"
 import Footer from "../components/footer"
 
@@ -186,13 +187,53 @@ const technologies = [
   }
 ]
 
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
+}
+
+const fadeInLeft = {
+  initial: { opacity: 0, x: -60 },
+  animate: { opacity: 1, x: 0 },
+  transition: { duration: 0.6 }
+}
+
+const fadeInRight = {
+  initial: { opacity: 0, x: 60 },
+  animate: { opacity: 1, x: 0 },
+  transition: { duration: 0.6 }
+}
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const scaleInHover = {
+  whileHover: { 
+    scale: 1.05,
+    transition: { duration: 0.2 }
+  },
+  whileTap: { scale: 0.95 }
+}
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
       <Header />
       
-      {/* Hero Section - Smaller than home page */}
-      <section className="relative bg-gradient-to-r from-gray-900 to-gray-800 py-16 px-4 overflow-hidden">
+      {/* Hero Section - Mobile Responsive */}
+      <motion.section 
+        className="relative bg-black/70 py-12 sm:py-16 lg:py-20 px-4 overflow-hidden min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh] flex items-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -203,438 +244,1056 @@ export default function AboutPage() {
         
         <div className="absolute inset-0 bg-blue-900/70" />
 
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="text-white font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-white" />
-              À PROPOS DE SOFT FS
-              <div className="w-8 h-0.5 bg-white" />
-            </div>
+        <div className="container mx-auto relative z-10 w-full">
+          <motion.div 
+            className="max-w-4xl mx-auto text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.div 
+              className="text-white font-semibold text-sm sm:text-base mb-4 sm:mb-6 flex items-center justify-center gap-2 flex-wrap"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-white"
+                initial={{ width: 0 }}
+                animate={{ width: "1.5rem" }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              />
+              <span className="text-center">À PROPOS DE SOFT FS</span>
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-white"
+                initial={{ width: 0 }}
+                animate={{ width: "1.5rem" }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              />
+            </motion.div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <motion.h1 
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
               Votre Partenaire de Confiance en
-              <br />
-              <span className="text-eduka-blue">Transformation</span> Numérique
-            </h1>
+              <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>
+              <motion.span 
+                className="text-eduka-blue"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 1 }}
+              >
+                Transformation
+              </motion.span> Numérique
+            </motion.h1>
 
-            <p className="text-gray-200 text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
+            <motion.p 
+              className="text-gray-200 text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto px-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
               Depuis plus de 10 ans, nous accompagnons les entreprises dans leur évolution technologique 
               avec des solutions innovantes, une expertise reconnue et un engagement sans faille envers l'excellence.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-eduka-blue hover:bg-eduka-blue-dark text-white px-8 py-3 rounded-full text-lg flex items-center justify-center gap-2 transition-colors">
-                <Play className="w-5 h-5" />
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 max-w-lg sm:max-w-none mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              <motion.button 
+                className="bg-eduka-blue hover:bg-eduka-blue-dark text-white px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 transition-colors whitespace-nowrap"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Play className="w-4 sm:w-5 h-4 sm:h-5" />
                 Voir Notre Histoire
-              </button>
-              <button className="border border-white text-white hover:bg-white hover:text-gray-800 px-8 py-3 rounded-full text-lg flex items-center justify-center gap-2 bg-transparent transition-colors">
+              </motion.button>
+              <motion.button 
+                className="border border-white text-white hover:bg-white hover:text-gray-800 px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 bg-transparent transition-colors whitespace-nowrap"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Nos Réalisations
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+                <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
+              </motion.button>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Company Story Section */}
-      <section className="py-20 px-4 bg-white">
+      {/* Company Story Section - Mobile Optimized */}
+      <motion.section 
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-white"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Images */}
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <img
+            <motion.div 
+              className="relative order-2 lg:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <motion.div 
+                  className="space-y-3 sm:space-y-4"
+                  variants={staggerContainer}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                >
+                  <motion.img
                     src="/images/design.jpg"
                     alt="Équipe de conception"
-                    className="rounded-lg w-full h-48 object-cover shadow-lg"
+                    className="rounded-lg w-full h-32 sm:h-40 lg:h-48 object-cover shadow-lg"
+                    variants={fadeInUp}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   />
-                  <img
+                  <motion.img
                     src="/images/worker.jpg"
                     alt="Développement en action"
-                    className="rounded-lg w-full h-36 object-cover shadow-lg"
+                    className="rounded-lg w-full h-24 sm:h-28 lg:h-36 object-cover shadow-lg"
+                    variants={fadeInUp}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   />
-                </div>
-                <div className="pt-8">
-                  <img
+                </motion.div>
+                <motion.div 
+                  className="pt-4 sm:pt-6 lg:pt-8"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <motion.img
                     src="/images/programmer.jpg"
                     alt="Programmation avancée"
-                    className="rounded-lg w-full h-72 object-cover shadow-lg"
+                    className="rounded-lg w-full h-48 sm:h-56 lg:h-72 object-cover shadow-lg"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   />
-                </div>
+                </motion.div>
               </div>
 
-              {/* Floating Stats Card */}
-              <div className="absolute -bottom-4 -right-4 bg-eduka-blue text-white p-6 rounded-lg shadow-xl">
+              {/* Floating Stats Card - Responsive positioning */}
+              <motion.div 
+                className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-eduka-blue text-white p-3 sm:p-4 lg:p-6 rounded-lg shadow-xl"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+              >
                 <div className="text-center">
-                  <div className="text-3xl font-bold">200+</div>
-                  <div className="text-sm">Projets Réussis</div>
+                  <motion.div 
+                    className="text-xl sm:text-2xl lg:text-3xl font-bold"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                  >
+                    200+
+                  </motion.div>
+                  <motion.div 
+                    className="text-xs sm:text-sm"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.7 }}
+                  >
+                    Projets Réussis
+                  </motion.div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Content */}
-            <div>
-              <div className="text-eduka-blue font-semibold mb-4 flex items-center gap-2">
-                <div className="w-8 h-0.5 bg-eduka-blue" />
+            <motion.div
+              className="order-1 lg:order-2"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.div 
+                className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center gap-2 flex-wrap justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <motion.div 
+                  className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "1.5rem" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
                 NOTRE HISTOIRE
-              </div>
+              </motion.div>
 
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">
+              <motion.h2 
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 text-center lg:text-left leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 Une Passion pour la 
-                <br />
+                <br className="hidden sm:block" />
                 <span className="text-eduka-blue">Technologie</span> Depuis 2014
-              </h2>
+              </motion.h2>
 
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <motion.p 
+                className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed text-center lg:text-left"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 Fondée à Douala en 2014, Soft FS est née de la vision de démocratiser l'accès aux technologies 
                 de pointe pour les entreprises africaines. Nous avons commencé avec une équipe de 3 développeurs 
                 passionnés et avons grandi pour devenir un acteur incontournable du secteur technologique.
-              </p>
+              </motion.p>
 
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <motion.p 
+                className="text-gray-600 text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed text-center lg:text-left"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
                 Aujourd'hui, nous sommes fiers de compter plus de 30 collaborateurs talentueux et d'avoir accompagné 
                 plus de 150 entreprises dans leur transformation numérique. Notre expertise couvre tous les aspects 
                 du développement logiciel, du design à l'infrastructure cloud.
-              </p>
+              </motion.p>
 
               {/* Mission & Vision Pills */}
-              <div className="space-y-4 mb-8">
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-bold text-gray-800 mb-2 flex items-center gap-2">
-                    <Target className="w-5 h-5 text-eduka-blue" />
+              <motion.div 
+                className="space-y-3 sm:space-y-4 mb-6 sm:mb-8"
+                variants={staggerContainer}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+              >
+                <motion.div 
+                  className="bg-gray-50 rounded-lg p-3 sm:p-4"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <h4 className="font-bold text-gray-800 text-sm sm:text-base mb-2 flex items-center gap-2 justify-center lg:justify-start">
+                    <Target className="w-4 sm:w-5 h-4 sm:h-5 text-eduka-blue flex-shrink-0" />
                     Notre Mission
                   </h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed text-center lg:text-left">
                     Accompagner chaque entreprise dans sa transformation digitale en proposant des solutions 
                     technologiques innovantes, évolutives et adaptées à ses besoins spécifiques.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-bold text-gray-800 mb-2 flex items-center gap-2">
-                    <Eye className="w-5 h-5 text-eduka-blue" />
+                <motion.div 
+                  className="bg-gray-50 rounded-lg p-3 sm:p-4"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <h4 className="font-bold text-gray-800 text-sm sm:text-base mb-2 flex items-center gap-2 justify-center lg:justify-start">
+                    <Eye className="w-4 sm:w-5 h-4 sm:h-5 text-eduka-blue flex-shrink-0" />
                     Notre Vision
                   </h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed text-center lg:text-left">
                     Être le leader africain des solutions logicielles innovantes et contribuer au développement 
                     de l'écosystème technologique continental.
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
-              <div className="flex items-center gap-4">
-                <button className="bg-eduka-blue hover:bg-eduka-blue-dark text-white px-8 py-3 rounded-full transition-colors">
+              {/* CTA Section - Mobile Responsive */}
+              <motion.div 
+                className="flex flex-col sm:flex-row sm:items-center gap-4 justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <motion.button 
+                  className="bg-eduka-blue hover:bg-eduka-blue-dark text-white px-6 sm:px-8 py-3 rounded-full transition-colors text-sm sm:text-base whitespace-nowrap"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   En Savoir Plus
-                </button>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-eduka-teal rounded-full flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-white" />
+                </motion.button>
+                <motion.div 
+                  className="flex items-center gap-3 justify-center lg:justify-start"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-eduka-teal rounded-full flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
                   </div>
-                  <div>
-                    <div className="text-sm text-gray-600">Appelez-nous maintenant</div>
-                    <div className="font-bold text-gray-800">+237 671 178 892</div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-xs sm:text-sm text-gray-600">Appelez-nous maintenant</div>
+                    <div className="font-bold text-gray-800 text-sm sm:text-base">+237 671 178 892</div>
                   </div>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Stats Section */}
-      <section className="py-20 px-4 relative overflow-hidden">
+      {/* Stats Section - Mobile Optimized */}
+      <motion.section 
+        className="py-12 sm:py-16 lg:py-20 px-4 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         {/* Background Image */}
-        <div
+        <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('/images/web-development.jpg')`,
           }}
+          initial={{ scale: 1.1 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
         />
         
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/70" />
 
         <div className="container mx-auto relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">
+          <motion.div 
+            className="text-center mb-8 sm:mb-12 lg:mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.h2 
+              className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-3 sm:mb-4 px-4 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               Des Chiffres qui Parlent de Notre <span className="text-eduka-blue">Excellence</span>
-            </h2>
-            <p className="text-gray-200 max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p 
+              className="text-gray-200 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               Notre track record témoigne de notre engagement envers la qualité et l'innovation 
               dans chaque projet que nous entreprenons.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div 
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {stats.map((stat, index) => {
               const IconComponent = stat.icon
               return (
-                <div key={index} className="text-center text-white">
-                  <div className="w-16 h-16 bg-eduka-blue rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <IconComponent className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-4xl font-bold mb-2">
+                <motion.div 
+                  key={index} 
+                  className="text-center text-white"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div 
+                    className="w-12 sm:w-16 h-12 sm:h-16 bg-eduka-blue rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <IconComponent className="w-5 sm:w-6 lg:w-8 h-5 sm:h-6 lg:h-8 text-white" />
+                  </motion.div>
+                  <motion.div 
+                    className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
+                  >
                     {stat.number}
                     <span className="text-eduka-blue">{stat.suffix}</span>
-                  </div>
-                  <div className="text-lg">{stat.label}</div>
-                </div>
+                  </motion.div>
+                  <motion.div 
+                    className="text-xs sm:text-sm lg:text-base leading-tight px-1"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 + 0.7 }}
+                  >
+                    {stat.label}
+                  </motion.div>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Company Values Section */}
-      <section className="py-20 px-4 bg-gray-50">
+      <motion.section 
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-gray-50"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-              NOS VALEURS
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-            </div>
+          <motion.div 
+            className="text-center mb-12 sm:mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div 
+              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+              <span>NOS VALEURS</span>
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+            </motion.div>
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <motion.h2 
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               Les Valeurs qui Nous <span className="text-eduka-blue">Définissent</span>
-            </h2>
+            </motion.h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <motion.p 
+              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               Nos valeurs fondamentales guident chaque décision, chaque interaction et chaque ligne de code 
               que nous écrivons. Elles sont le socle sur lequel nous construisons des relations durables.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {companyValues.map((value, index) => {
               const IconComponent = value.icon
               return (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-gray-100"
+                  className="bg-white rounded-xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-gray-100"
+                  variants={fadeInUp}
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -8,
+                    transition: { duration: 0.3 }
+                  }}
                 >
                   <div className="text-center">
-                    <div className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg" style={{ background: 'linear-gradient(to bottom right, #3B4D8F, #A5A6C8)' }}>
-                      <IconComponent className="w-8 h-8 text-white" />
-                    </div>
+                    <motion.div 
+                      className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg" 
+                      style={{ background: 'linear-gradient(to bottom right, #3B4D8F, #A5A6C8)' }}
+                      whileHover={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <IconComponent className="w-6 sm:w-7 lg:w-8 h-6 sm:h-7 lg:h-8 text-white" />
+                    </motion.div>
                     
-                    <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-eduka-blue transition-colors duration-300">
+                    <motion.h3 
+                      className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4 group-hover:text-eduka-blue transition-colors duration-300 leading-tight"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
+                    >
                       {value.title}
-                    </h3>
+                    </motion.h3>
                     
-                    <p className="text-gray-600 leading-relaxed">
+                    <motion.p 
+                      className="text-gray-600 text-sm sm:text-base leading-relaxed"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.6 }}
+                    >
                       {value.description}
-                    </p>
+                    </motion.p>
                   </div>
                   
-                  <div className="mt-6 pt-6 border-t border-gray-100">
-                    <div className="w-12 h-1 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(to right, #3B4D8F, #A5A6C8)' }}></div>
+                  <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-100">
+                    <motion.div 
+                      className="w-8 sm:w-10 lg:w-12 h-1 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                      style={{ background: 'linear-gradient(to right, #3B4D8F, #A5A6C8)' }}
+                      initial={{ width: 0 }}
+                      whileHover={{ width: "3rem" }}
+                      transition={{ duration: 0.3 }}
+                    />
                   </div>
-                </div>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Technologies Section */}
-      <section className="py-20 px-4 bg-white">
+      <motion.section 
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-white"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-              NOTRE STACK TECHNOLOGIQUE
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-            </div>
+          <motion.div 
+            className="text-center mb-12 sm:mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div 
+              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+              <span className="text-center">NOTRE STACK TECHNOLOGIQUE</span>
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+            </motion.div>
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <motion.h2 
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               Technologies de <span className="text-eduka-blue">Pointe</span>
-            </h2>
+            </motion.h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <motion.p 
+              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               Nous maîtrisons un large éventail de technologies modernes pour répondre à tous vos besoins 
               de développement, depuis les applications web jusqu'aux solutions d'intelligence artificielle.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {technologies.map((tech, index) => {
               const IconComponent = tech.icon
               return (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
+                  className="bg-gray-50 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
+                  variants={fadeInUp}
+                  whileHover={{ 
+                    scale: 1.03,
+                    y: -5,
+                    transition: { duration: 0.3 }
+                  }}
                 >
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-eduka-blue rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-                      <IconComponent className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-eduka-blue transition-colors duration-300">
+                  <div className="flex items-center mb-3 sm:mb-4">
+                    <motion.div 
+                      className="w-10 sm:w-12 h-10 sm:h-12 bg-eduka-blue rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0"
+                      whileHover={{ rotate: 180 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <IconComponent className="w-5 sm:w-6 h-5 sm:h-6 text-white" />
+                    </motion.div>
+                    <motion.h3 
+                      className="text-lg sm:text-xl font-bold text-gray-800 group-hover:text-eduka-blue transition-colors duration-300 leading-tight"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
+                    >
                       {tech.category}
-                    </h3>
+                    </motion.h3>
                   </div>
                   
-                  <div className="flex flex-wrap gap-2">
+                  <motion.div 
+                    className="flex flex-wrap gap-1.5 sm:gap-2"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
+                  >
                     {tech.technologies.map((technology, techIndex) => (
-                      <span
+                      <motion.span
                         key={techIndex}
-                        className="bg-white text-gray-700 px-3 py-1 rounded-full text-sm border border-gray-200 hover:border-eduka-blue hover:text-eduka-blue transition-colors duration-200"
+                        className="bg-white text-gray-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm border border-gray-200 hover:border-eduka-blue hover:text-eduka-blue transition-colors duration-200 whitespace-nowrap"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: techIndex * 0.05 + index * 0.1 + 0.6 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         {technology}
-                      </span>
+                      </motion.span>
                     ))}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Our Team Section */}
-      <section className="py-20 px-4 bg-gray-50">
+      <motion.section 
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-gray-50"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-              NOTRE ÉQUIPE
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-            </div>
+          <motion.div 
+            className="text-center mb-12 sm:mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div 
+              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+              <span>NOTRE ÉQUIPE</span>
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+            </motion.div>
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <motion.h2 
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               Rencontrez Notre Équipe <span className="text-eduka-blue">d'Experts</span>
-            </h2>
+            </motion.h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <motion.p 
+              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               Notre équipe diversifiée de professionnels passionnés rassemble des décennies d'expérience 
               en technologie, design et innovation pour livrer des résultats exceptionnels.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {teamMembers.map((member, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+                variants={fadeInUp}
+                whileHover={{ 
+                  scale: 1.02,
+                  y: -8,
+                  transition: { duration: 0.3 }
+                }}
               >
                 <div className="relative overflow-hidden">
-                  <img 
+                  <motion.img 
                     src={member.image} 
                     alt={member.name} 
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" 
+                    className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.4 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                  />
                   
                   {/* Social Links */}
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <a href={member.social.github} className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors">
-                      <Github className="w-4 h-4" />
-                    </a>
-                    <a href={member.social.linkedin} className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors">
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                    <a href={member.social.twitter} className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors">
-                      <Twitter className="w-4 h-4" />
-                    </a>
-                  </div>
+                  <motion.div 
+                    className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 sm:gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileHover={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.a 
+                      href={member.social.github} 
+                      className="w-7 sm:w-8 h-7 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors"
+                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <Github className="w-3 sm:w-4 h-3 sm:h-4" />
+                    </motion.a>
+                    <motion.a 
+                      href={member.social.linkedin} 
+                      className="w-7 sm:w-8 h-7 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors"
+                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <Linkedin className="w-3 sm:w-4 h-3 sm:h-4" />
+                    </motion.a>
+                    <motion.a 
+                      href={member.social.twitter} 
+                      className="w-7 sm:w-8 h-7 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors"
+                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <Twitter className="w-3 sm:w-4 h-3 sm:h-4" />
+                    </motion.a>
+                  </motion.div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-1">{member.name}</h3>
-                  <p className="text-eduka-blue font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{member.description}</p>
+                <motion.div 
+                  className="p-4 sm:p-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                >
+                  <motion.h3 
+                    className="text-lg sm:text-xl font-bold text-gray-800 mb-1 leading-tight"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
+                  >
+                    {member.name}
+                  </motion.h3>
+                  <motion.p 
+                    className="text-eduka-blue font-semibold text-sm sm:text-base mb-3 leading-tight"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 + 0.4 }}
+                  >
+                    {member.role}
+                  </motion.p>
+                  <motion.p 
+                    className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
+                  >
+                    {member.description}
+                  </motion.p>
                   
                   {/* Specialties */}
-                  <div className="flex flex-wrap gap-1">
+                  <motion.div 
+                    className="flex flex-wrap gap-1"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.6 }}
+                  >
                     {member.specialties.map((specialty, specIndex) => (
-                      <span
+                      <motion.span
                         key={specIndex}
-                        className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
+                        className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs whitespace-nowrap"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: specIndex * 0.05 + index * 0.1 + 0.7 }}
+                        whileHover={{ scale: 1.1, backgroundColor: "#3B4D8F", color: "#FFFFFF" }}
                       >
                         {specialty}
-                      </span>
+                      </motion.span>
                     ))}
-                  </div>
-                </div>
-              </div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* Why Choose Us Section */}
-      <section className="py-20 px-4 bg-white">
+      <motion.section 
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-white"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-              POURQUOI NOUS CHOISIR
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-            </div>
+          <motion.div 
+            className="text-center mb-12 sm:mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div 
+              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+              <span className="text-center">POURQUOI NOUS CHOISIR</span>
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+            </motion.div>
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <motion.h2 
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               Pourquoi <span className="text-eduka-blue">Soft FS</span> est Votre Meilleur Choix
-            </h2>
+            </motion.h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <motion.p 
+              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               Nous combinons l'excellence technique avec l'expertise métier pour livrer des solutions 
               qui non seulement répondent à vos besoins actuels mais vous positionnent pour la croissance future.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {whyChooseUs.map((feature, index) => {
               const IconComponent = feature.icon
               return (
-                <div
+                <motion.div
                   key={index}
                   className="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-gray-100"
+                  variants={fadeInUp}
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -8,
+                    transition: { duration: 0.3 }
+                  }}
                 >
                   <div className="text-center">
-                    <div className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg" style={{ background: 'linear-gradient(to bottom right, #3B4D8F, #A5A6C8)' }}>
+                    <motion.div 
+                      className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg" 
+                      style={{ background: 'linear-gradient(to bottom right, #3B4D8F, #A5A6C8)' }}
+                      whileHover={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 0.6 }}
+                    >
                       <IconComponent className="w-8 h-8 text-white" />
-                    </div>
+                    </motion.div>
                     
-                    <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-eduka-blue transition-colors duration-300">
+                    <motion.h3 
+                      className="text-xl font-bold text-gray-800 mb-4 group-hover:text-eduka-blue transition-colors duration-300"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
+                    >
                       {feature.title}
-                    </h3>
+                    </motion.h3>
                     
-                    <p className="text-gray-600 leading-relaxed">
+                    <motion.p 
+                      className="text-gray-600 leading-relaxed"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.6 }}
+                    >
                       {feature.description}
-                    </p>
+                    </motion.p>
                   </div>
                   
                   <div className="mt-6 pt-6 border-t border-gray-100">
-                    <div className="w-12 h-1 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(to right, #3B4D8F, #A5A6C8)' }}></div>
+                    <motion.div 
+                      className="w-12 h-1 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                      style={{ background: 'linear-gradient(to right, #3B4D8F, #A5A6C8)' }}
+                      initial={{ width: 0 }}
+                      whileHover={{ width: 48 }}
+                      transition={{ duration: 0.3 }}
+                    />
                   </div>
-                </div>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
 
-          {/* CTA Section */}
-          <div className="text-center mt-16">
-            <div className="bg-gradient-to-r from-eduka-blue to-eduka-teal rounded-2xl p-8 shadow-lg text-white max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold mb-4">
+          {/* CTA Section - Mobile Optimized */}
+          <motion.div 
+            className="text-center mt-12 sm:mt-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <motion.div 
+              className="bg-gradient-to-r from-eduka-blue to-eduka-teal rounded-2xl p-6 sm:p-8 shadow-lg text-white max-w-4xl mx-auto"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.h3 
+                className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 Prêt à Transformer Votre Entreprise ?
-              </h3>
-              <p className="mb-6 max-w-2xl mx-auto opacity-90">
+              </motion.h3>
+              <motion.p 
+                className="mb-6 max-w-2xl mx-auto opacity-90 text-sm sm:text-base lg:text-lg leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
                 Rejoignez des centaines de clients satisfaits qui ont choisi Soft FS pour accélérer 
                 leur parcours de transformation numérique. Discutons de votre projet aujourd'hui.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-white text-eduka-blue hover:bg-gray-100 px-8 py-3 rounded-full text-lg font-semibold transition-colors">
+              </motion.p>
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <motion.button 
+                  className="bg-white text-eduka-blue hover:bg-gray-100 px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold transition-colors whitespace-nowrap"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   Démarrer Votre Projet
-                </button>
-                <button className="border-2 border-white text-white hover:bg-white hover:text-eduka-blue px-8 py-3 rounded-full text-lg font-semibold transition-colors">
+                </motion.button>
+                <motion.button 
+                  className="border-2 border-white text-white hover:bg-white hover:text-eduka-blue px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold transition-colors whitespace-nowrap"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   Nous Contacter
-                </button>
-              </div>
-            </div>
-          </div>
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       <Footer />
     </div>

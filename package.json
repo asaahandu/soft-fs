@@ -5,9 +5,14 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "firebase:emulator": "firebase emulators:start",
+    "firebase:deploy": "firebase deploy",
+    "firebase:rules": "firebase deploy --only firestore:rules,storage:rules"
   },
   "dependencies": {
+    "firebase": "^12.3.0",
+    "framer-motion": "^12.23.22",
     "lucide-react": "^0.542.0",
     "next": "15.5.2",
     "react": "19.1.0",

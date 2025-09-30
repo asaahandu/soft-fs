@@ -1,7 +1,68 @@
 'use client';
-import {CheckCircle, Users, Clock, Star, Code, Palette, Smartphone, Globe, Database, Shield, Zap, Settings, ArrowRight, Phone, Mail} from "lucide-react"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { motion, AnimatePresence, useInView } from "framer-motion"
+import { useRef } from "react"
+import {CheckCircle, Users, Clock, Star, Code, Palette, Smartphone, Globe, Database, Shield, Zap, Settings, ArrowRight, Phone, Mail, X} from "lucide-react"
 import Header from "../components/header"
 import Footer from "../components/footer"
+import ServiceForm from "../components/ServiceForm"
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { duration: 0.8 }
+  }
+}
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -60 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" }
+  }
+}
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 60 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" }
+  }
+}
+
+const staggerChildren = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+}
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+}
 
 // Detailed services data with comprehensive information
 const servicesData = [
@@ -28,7 +89,7 @@ const servicesData = [
     technologies: ["React", "Next.js", "Node.js", "MongoDB", "AWS", "Docker"],
     icon: Code,
     color: "from-blue-500 to-blue-700",
-    price: "À partir de 50,000FCFA",
+    price: "50,000FCFA",
     timeline: "2-8 semaines"
   },
   {
@@ -54,7 +115,7 @@ const servicesData = [
     technologies: ["Adobe Creative Suite", "Figma", "Sketch", "Canva Pro", "Illustrator", "Photoshop"],
     icon: Palette,
     color: "from-purple-500 to-pink-500",
-    price: "À partir de 15000FCFA",
+    price: "15000FCFA",
     timeline: "1-3 semaines"
   },
   {
@@ -80,7 +141,7 @@ const servicesData = [
     technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase", "Redux"],
     icon: Smartphone,
     color: "from-green-500 to-emerald-600",
-    price: "À partir de 100,000FCFA",
+    price: "100,000FCFA",
     timeline: "3-12 semaines"
   }
 ]
@@ -133,321 +194,770 @@ const processSteps = [
   }
 ]
 
+// Custom hook for scroll animations
+function useScrollAnimation() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  return [ref, isInView]
+}
+
 export default function ServicesPage() {
+  const [isServiceFormOpen, setIsServiceFormOpen] = useState(false)
+  const router = useRouter()
+  
+  // Animation refs
+  const [heroRef, heroInView] = useScrollAnimation()
+  const [servicesRef, servicesInView] = useScrollAnimation()
+  const [additionalRef, additionalInView] = useScrollAnimation()
+  const [processRef, processInView] = useScrollAnimation()
+  const [ctaRef, ctaInView] = useScrollAnimation()
+
+  const openServiceForm = () => {
+    setIsServiceFormOpen(true)
+  }
+
+  const closeServiceForm = () => {
+    setIsServiceFormOpen(false)
+  }
+
   return (
     <div className="min-h-screen">
       <Header />
       
-      {/* Hero Section - Smaller than home page */}
-      <section className="relative bg-gradient-to-r from-black-900 to-black-700 py-16 px-4 overflow-hidden">
+      {/* Hero Section - Mobile Optimized */}
+      <motion.section 
+        ref={heroRef}
+        initial="hidden"
+        animate={heroInView ? "visible" : "hidden"}
+        className="relative bg-gradient-to-r from-black-900/70 to-black-700/70 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center"
+      >
         {/* Background Image */}
-        <div
+        <motion.div
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('/images/web-development.jpg')`,
           }}
         />
         
-        <div className="absolute inset-0 bg-blue-900/80" />
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="absolute inset-0 bg-blue-900/80" 
+        />
 
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="text-white font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-white" />
+        <div className="container mx-auto relative z-10 w-full">
+          <motion.div 
+            variants={staggerChildren}
+            initial="hidden"
+            animate={heroInView ? "visible" : "hidden"}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <motion.div 
+              variants={fadeInUp}
+              className="text-white font-semibold mb-4 sm:mb-6 flex items-center justify-center gap-2 text-sm sm:text-base"
+            >
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: 24 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="h-0.5 bg-white hidden sm:block" 
+              />
               NOS SERVICES
-              <div className="w-8 h-0.5 bg-white" />
-            </div>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: 24 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="h-0.5 bg-white hidden sm:block" 
+              />
+            </motion.div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Solutions <span className="text-eduka-blue">Technologiques</span>
-              <br />
+            <motion.h1 
+              variants={fadeInUp}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
+            >
+              Solutions <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="text-eduka-blue"
+              >
+                Technologiques
+              </motion.span>
+              <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>
               Complètes pour Votre Entreprise
-            </h1>
+            </motion.h1>
 
-            <p className="text-gray-200 text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
+            <motion.p 
+              variants={fadeInUp}
+              className="text-gray-200 text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto px-2"
+            >
               Du développement web aux applications mobiles et au design créatif, nous livrons des solutions innovantes 
               qui stimulent la croissance et transforment votre présence numérique.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-eduka-blue text-white hover:bg-blue-700 px-8 py-3 rounded-full text-lg flex items-center justify-center gap-2 transition-colors">
-                Voir Nos Réalisations
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="border border-white text-white hover:bg-white hover:text-gray-800 px-8 py-3 rounded-full text-lg flex items-center justify-center gap-2 bg-transparent transition-colors">
+            <motion.div 
+              variants={fadeInUp}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 max-w-lg sm:max-w-none mx-auto"
+            >
+              <motion.button 
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-eduka-blue text-white hover:bg-blue-700 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 transition-colors shadow-lg font-semibold w-full sm:w-auto"
+              >
+                <span className="hidden sm:inline">Voir Nos Réalisations</span>
+                <span className="sm:hidden">Nos Réalisations</span>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </motion.div>
+              </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 bg-transparent transition-colors shadow-lg font-semibold w-full sm:w-auto"
+              >
                 Devis Gratuit
-                <Phone className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              </motion.button>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Main Services Section */}
-      <section className="py-20 px-4 bg-gray-50">
+      <motion.section 
+        ref={servicesRef}
+        initial="hidden"
+        animate={servicesInView ? "visible" : "hidden"}
+        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-50"
+      >
         <div className="container mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-eduka-blue" />
+          <motion.div 
+            variants={staggerChildren}
+            className="text-center mb-12 sm:mb-16 px-2"
+          >
+            <motion.div 
+              variants={fadeInUp}
+              className="text-eduka-blue font-semibold mb-4 sm:mb-6 flex items-center justify-center gap-2 text-sm sm:text-base"
+            >
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={servicesInView ? { width: 24 } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="h-0.5 bg-eduka-blue hidden sm:block" 
+              />
               SERVICES PRINCIPAUX
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-            </div>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={servicesInView ? { width: 24 } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="h-0.5 bg-eduka-blue hidden sm:block" 
+              />
+            </motion.div>
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Nos Services <span className="text-eduka-blue">Essentiels</span>
-            </h2>
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6"
+            >
+              Nos Services <motion.span 
+                initial={{ opacity: 0 }}
+                animate={servicesInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="text-eduka-blue"
+              >
+                Essentiels
+              </motion.span>
+            </motion.h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <motion.p 
+              variants={fadeInUp}
+              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed"
+            >
               Nous nous spécialisons dans trois domaines principaux de solutions technologiques, chacun conçu pour 
               aider votre entreprise à prospérer dans le paysage numérique.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Detailed Services */}
-          <div className="space-y-20">
+          <motion.div 
+            variants={staggerChildren}
+            className="space-y-16 sm:space-y-20 lg:space-y-24"
+          >
             {servicesData.map((service, index) => {
               const IconComponent = service.icon
               return (
-                <div
+                <motion.div
                   key={service.id}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                  variants={index % 2 === 0 ? slideInLeft : slideInRight}
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center ${
                     index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                   }`}
                 >
                   {/* Content */}
-                  <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg`}>
-                        <IconComponent className="w-8 h-8 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-800">{service.title}</h3>
-                        <p className="text-eduka-blue font-semibold">{service.subtitle}</p>
-                      </div>
-                    </div>
+                  <motion.div 
+                    variants={staggerChildren}
+                    className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} px-4 sm:px-0`}
+                  >
+                    <motion.div 
+                      variants={fadeInUp}
+                      className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6"
+                    >
+                      <motion.div 
+                        variants={scaleIn}
+                        whileHover={{ scale: 1.05, rotate: 5 }}
+                        className={`w-12 h-12 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg flex-shrink-0`}
+                      >
+                        <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                      </motion.div>
+                      <motion.div variants={fadeInUp} className="min-w-0">
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 leading-tight">{service.title}</h3>
+                        <p className="text-eduka-blue font-semibold text-sm sm:text-base mt-1">{service.subtitle}</p>
+                      </motion.div>
+                    </motion.div>
 
-                    <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                    <motion.p 
+                      variants={fadeInUp}
+                      className="text-gray-600 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 leading-relaxed"
+                    >
                       {service.fullDescription}
-                    </p>
+                    </motion.p>
 
                     {/* Key Features */}
-                    <div className="mb-8">
-                      <h4 className="text-lg font-bold text-gray-800 mb-4">Caractéristiques Clés:</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <motion.div 
+                      variants={fadeInUp}
+                      className="mb-6 sm:mb-8"
+                    >
+                      <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4">Caractéristiques Clés:</h4>
+                      <motion.div 
+                        variants={staggerChildren}
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3"
+                      >
                         {service.features.slice(0, 6).map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-3">
-                            <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-600 text-sm">{feature}</span>
-                          </div>
+                          <motion.div 
+                            key={idx}
+                            variants={fadeIn}
+                            whileHover={{ x: 5 }}
+                            className="flex items-start gap-3"
+                          >
+                            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-600 text-xs sm:text-sm leading-relaxed">{feature}</span>
+                          </motion.div>
                         ))}
-                      </div>
-                    </div>
+                      </motion.div>
+                    </motion.div>
 
                     {/* Technologies */}
-                    <div className="mb-8">
-                      <h4 className="text-lg font-bold text-gray-800 mb-4">Technologies que Nous Utilisons:</h4>
-                      <div className="flex flex-wrap gap-2">
+                    <motion.div 
+                      variants={fadeInUp}
+                      className="mb-6 sm:mb-8"
+                    >
+                      <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4">Technologies que Nous Utilisons:</h4>
+                      <motion.div 
+                        variants={staggerChildren}
+                        className="flex flex-wrap gap-2"
+                      >
                         {service.technologies.map((tech, idx) => (
-                          <span
+                          <motion.span
                             key={idx}
-                            className="bg-white border border-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:border-eduka-blue hover:text-eduka-blue transition-colors"
+                            variants={scaleIn}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            className="bg-white border border-gray-200 text-gray-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover:border-eduka-blue hover:text-eduka-blue transition-colors cursor-pointer"
                           >
                             {tech}
-                          </span>
+                          </motion.span>
                         ))}
-                      </div>
-                    </div>
+                      </motion.div>
+                    </motion.div>
 
                     {/* Stats and CTA */}
-                    <div className="bg-white rounded-lg p-6 shadow-md border border-gray-100">
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-eduka-blue">{service.rating}.0</div>
-                          <div className="text-sm text-gray-600">Note</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-eduka-blue">{service.clients}+</div>
-                          <div className="text-sm text-gray-600">Clients</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-eduka-blue">{service.timeline}</div>
-                          <div className="text-sm text-gray-600">Délai</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-eduka-blue">{service.price.split(' ')[2]}</div>
-                          <div className="text-sm text-gray-600">À partir de</div>
-                        </div>
-                      </div>
-
-                      <button className="w-full bg-blue-700 text-white py-3 px-6 rounded-lg hover:bg-blue-500 transition-colors flex items-center justify-center gap-2">
-                        Commencer avec {service.title}
-                        <ArrowRight className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </div>
+                    <motion.div 
+                      variants={fadeInUp}
+                      className="bg-white rounded-lg p-4 sm:p-6 shadow-md border border-gray-100"
+                    >
+                      <motion.div 
+                        variants={staggerChildren}
+                        className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4 sm:mb-6"
+                      >
+                        <motion.div 
+                          variants={fadeInUp}
+                          whileHover={{ y: -5 }}
+                          className="text-center"
+                        >
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                            className="text-xl sm:text-2xl font-bold text-eduka-blue"
+                          >
+                            {service.rating}.0
+                          </motion.div>
+                          <div className="text-xs sm:text-sm text-gray-600">Note</div>
+                        </motion.div>
+                        <motion.div 
+                          variants={fadeInUp}
+                          whileHover={{ y: -5 }}
+                          className="text-center"
+                        >
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 + 0.1 }}
+                            className="text-xl sm:text-2xl font-bold text-eduka-blue"
+                          >
+                            {service.clients}+
+                          </motion.div>
+                          <div className="text-xs sm:text-sm text-gray-600">Clients</div>
+                        </motion.div>
+                        <motion.div 
+                          variants={fadeInUp}
+                          whileHover={{ y: -5 }}
+                          className="text-center"
+                        >
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 + 0.2 }}
+                            className="text-xl sm:text-2xl font-bold text-eduka-blue"
+                          >
+                            {service.timeline}
+                          </motion.div>
+                          <div className="text-xs sm:text-sm text-gray-600">Délai</div>
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>
 
                   {/* Image */}
-                  <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                    <div className="relative">
-                      <img
+                  <motion.div 
+                    variants={index % 2 === 0 ? slideInRight : slideInLeft}
+                    className={`${index % 2 === 1 ? 'lg:col-start-1' : ''} px-4 sm:px-0`}
+                  >
+                    <motion.div 
+                      whileHover={{ y: -10 }}
+                      className="relative"
+                    >
+                      <motion.img
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
                         src={service.image}
                         alt={service.title}
-                        className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
+                        className="rounded-lg sm:rounded-2xl shadow-2xl w-full h-[250px] sm:h-[350px] lg:h-[400px] object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg sm:rounded-2xl" />
                       
                       {/* Floating badge */}
-                      <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm text-eduka-blue px-4 py-2 rounded-full font-semibold shadow-lg">
+                      <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="absolute top-3 left-3 sm:top-6 sm:left-6 bg-white/90 backdrop-blur-sm text-eduka-blue px-2 py-1 sm:px-4 sm:py-2 rounded-full font-semibold shadow-lg text-xs sm:text-sm"
+                      >
                         ⭐ {service.rating}.0 Note
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Additional Services */}
-      <section className="py-20 px-4 bg-white">
+      <motion.section 
+        ref={additionalRef}
+        initial="hidden"
+        animate={additionalInView ? "visible" : "hidden"}
+        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white"
+      >
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-eduka-blue" />
+          <motion.div 
+            variants={staggerChildren}
+            className="text-center mb-12 sm:mb-16 px-2"
+          >
+            <motion.div 
+              variants={fadeInUp}
+              className="text-eduka-blue font-semibold mb-4 sm:mb-6 flex items-center justify-center gap-2 text-sm sm:text-base"
+            >
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={additionalInView ? { width: 24 } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="h-0.5 bg-eduka-blue hidden sm:block" 
+              />
               SERVICES ADDITIONNELS
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-            </div>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={additionalInView ? { width: 24 } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="h-0.5 bg-eduka-blue hidden sm:block" 
+              />
+            </motion.div>
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Plus de Façons de Nous <span className="text-eduka-blue">Aider</span>
-            </h2>
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6"
+            >
+              Plus de Façons de Nous <motion.span 
+                initial={{ opacity: 0 }}
+                animate={additionalInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="text-eduka-blue"
+              >
+                Aider
+              </motion.span>
+            </motion.h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <motion.p 
+              variants={fadeInUp}
+              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed"
+            >
               Au-delà de nos services principaux, nous offrons des solutions supplémentaires pour soutenir 
               votre parcours complet de transformation numérique.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div 
+            variants={staggerChildren}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 px-4 sm:px-0"
+          >
             {additionalServices.map((service, index) => {
               const IconComponent = service.icon
               return (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 group border border-gray-100"
+                  variants={fadeInUp}
+                  whileHover={{ 
+                    y: -10,
+                    scale: 1.02,
+                    transition: { duration: 0.2 }
+                  }}
+                  className="bg-gray-50 rounded-xl p-6 sm:p-8 hover:shadow-lg transition-all duration-300 group border border-gray-100"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-r from-eduka-blue to-blue-700 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <IconComponent className="w-8 h-8 text-white" />
-                  </div>
+                  <motion.div 
+                    whileHover={{ 
+                      scale: 1.1, 
+                      rotate: 10,
+                      transition: { duration: 0.3 }
+                    }}
+                    className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-eduka-blue to-blue-700 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg"
+                  >
+                    <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                  </motion.div>
                   
-                  <h3 className="text-xl font-bold text-gray-800 mb-4 text-center group-hover:text-eduka-blue transition-colors duration-300">
+                  <motion.h3 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                    className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4 text-center group-hover:text-eduka-blue transition-colors duration-300 leading-tight"
+                  >
                     {service.title}
-                  </h3>
+                  </motion.h3>
                   
-                  <p className="text-gray-600 text-center leading-relaxed">
+                  <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+                    className="text-gray-600 text-center leading-relaxed text-sm sm:text-base"
+                  >
                     {service.description}
-                  </p>
+                  </motion.p>
                   
                   <div className="mt-6 pt-6 border-t border-gray-200">
-                    <div className="w-12 h-1 bg-gradient-to-r from-eduka-blue to-blue-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      whileHover={{ width: 48 }}
+                      className="h-1 bg-gradient-to-r from-eduka-blue to-blue-700 rounded-full mx-auto transition-all duration-300"
+                    />
                   </div>
-                </div>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Our Process */}
-      <section className="py-20 px-4 bg-gray-50">
+      <motion.section 
+        ref={processRef}
+        initial="hidden"
+        animate={processInView ? "visible" : "hidden"}
+        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-50"
+      >
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2">
-              <div className="w-8 h-0.5 bg-eduka-blue" />
+          <motion.div 
+            variants={staggerChildren}
+            className="text-center mb-16"
+          >
+            <motion.div 
+              variants={fadeInUp}
+              className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2"
+            >
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={processInView ? { width: 32 } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="h-0.5 bg-eduka-blue" 
+              />
               NOTRE PROCESSUS
-              <div className="w-8 h-0.5 bg-eduka-blue" />
-            </div>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={processInView ? { width: 32 } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="h-0.5 bg-eduka-blue" 
+              />
+            </motion.div>
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Comment Nous <span className="text-eduka-blue">Travaillons</span> Avec Vous
-            </h2>
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-4xl font-bold text-gray-800 mb-4"
+            >
+              Comment Nous <motion.span 
+                initial={{ opacity: 0 }}
+                animate={processInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="text-eduka-blue"
+              >
+                Travaillons
+              </motion.span> Avec Vous
+            </motion.h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <motion.p 
+              variants={fadeInUp}
+              className="text-gray-600 max-w-2xl mx-auto"
+            >
               Notre méthodologie éprouvée assure une livraison de projet réussie de 
               la consultation initiale au déploiement final et au-delà.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div 
+            variants={staggerChildren}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
             {processSteps.map((step, index) => (
-              <div key={index} className="text-center relative">
+              <motion.div 
+                key={index} 
+                variants={fadeInUp}
+                className="text-center relative"
+              >
                 {/* Connection line */}
                 {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gray-300 transform -translate-y-1/2 z-0" />
+                  <motion.div 
+                    initial={{ scaleX: 0 }}
+                    animate={processInView ? { scaleX: 1 } : { scaleX: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.2 + 0.5 }}
+                    className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gray-300 transform -translate-y-1/2 z-0 origin-left" 
+                  />
                 )}
                 
-                <div className="relative z-10">
-                  <div className="w-16 h-16 bg-gradient-to-r from-eduka-blue to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <motion.div 
+                  variants={fadeInUp}
+                  className="relative z-10"
+                >
+                  <motion.div 
+                    whileHover={{ 
+                      scale: 1.1, 
+                      boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.3)",
+                      transition: { duration: 0.2 }
+                    }}
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.2,
+                      type: "spring",
+                      stiffness: 200 
+                    }}
+                    className="w-16 h-16 bg-gradient-to-r from-eduka-blue to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg cursor-pointer"
+                  >
                     <span className="text-white font-bold text-lg">{step.number}</span>
-                  </div>
+                  </motion.div>
                   
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">
+                  <motion.h3 
+                    variants={fadeInUp}
+                    className="text-xl font-bold text-gray-800 mb-4"
+                  >
                     {step.title}
-                  </h3>
+                  </motion.h3>
                   
-                  <p className="text-gray-600 leading-relaxed">
+                  <motion.p 
+                    variants={fadeInUp}
+                    className="text-gray-600 leading-relaxed"
+                  >
                     {step.description}
-                  </p>
-                </div>
-              </div>
+                  </motion.p>
+                </motion.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-400 to-blue-700">
+      <motion.section 
+        ref={ctaRef}
+        initial="hidden"
+        animate={ctaInView ? "visible" : "hidden"}
+        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-r from-blue-400 to-blue-700"
+      >
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <motion.h2 
+            variants={fadeInUp}
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 px-2"
+          >
             Prêt à Démarrer Votre Projet ?
-          </h2>
+          </motion.h2>
           
-          <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+          <motion.p 
+            variants={fadeInUp}
+            className="text-blue-100 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 max-w-3xl mx-auto px-2 leading-relaxed"
+          >
             Discutons de vos exigences et créons une solution qui fait avancer votre entreprise. 
             Obtenez une consultation gratuite et un devis de projet aujourd'hui.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-eduka-blue hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2 transition-colors">
-              <Phone className="w-5 h-5" />
+          <motion.div 
+            variants={staggerChildren}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 max-w-lg sm:max-w-none mx-auto"
+          >
+            <motion.button
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.05, 
+                y: -2,
+                boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => router.push('/Contact')}
+              className="bg-white text-eduka-blue hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-lg w-full sm:w-auto"
+            >
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               Appelez-Nous
-            </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-eduka-blue px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2 transition-colors">
-              <Mail className="w-5 h-5" />
+            </motion.button>
+            <motion.button
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.05, 
+                y: -2,
+                backgroundColor: "rgba(255,255,255,0.1)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              onClick={openServiceForm}
+              className="border-2 border-white text-white hover:bg-white hover:text-eduka-blue px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-lg w-full sm:w-auto"
+            >
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
               Envoyer un Message
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">24/7</div>
-              <div className="text-blue-100">Support Disponible</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">100%</div>
-              <div className="text-blue-100">Satisfaction Client</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">48h</div>
-              <div className="text-blue-100">Temps de Réponse</div>
-            </div>
-          </div>
+          <motion.div 
+            variants={staggerChildren}
+            className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-2"
+          >
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{ y: -5 }}
+              className="text-center"
+            >
+              <motion.div 
+                initial={{ scale: 0 }}
+                animate={ctaInView ? { scale: 1 } : { scale: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-2xl sm:text-3xl font-bold text-white mb-2"
+              >
+                24/7
+              </motion.div>
+              <div className="text-blue-100 text-sm sm:text-base">Support Disponible</div>
+            </motion.div>
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{ y: -5 }}
+              className="text-center"
+            >
+              <motion.div 
+                initial={{ scale: 0 }}
+                animate={ctaInView ? { scale: 1 } : { scale: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="text-2xl sm:text-3xl font-bold text-white mb-2"
+              >
+                100%
+              </motion.div>
+              <div className="text-blue-100 text-sm sm:text-base">Satisfaction Client</div>
+            </motion.div>
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{ y: -5 }}
+              className="text-center"
+            >
+              <motion.div 
+                initial={{ scale: 0 }}
+                animate={ctaInView ? { scale: 1 } : { scale: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="text-2xl sm:text-3xl font-bold text-white mb-2"
+              >
+                48h
+              </motion.div>
+              <div className="text-blue-100 text-sm sm:text-base">Temps de Réponse</div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       <Footer />
+
+      {/* Service Form Modal */}
+      <AnimatePresence>
+        {isServiceFormOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4"
+            onClick={closeServiceForm}
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="relative w-full max-w-xs sm:max-w-2xl lg:max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <motion.button
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ delay: 0.2 }}
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={closeServiceForm}
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-colors group"
+              >
+                <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 group-hover:text-gray-800" />
+              </motion.button>
+              
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+              >
+                <ServiceForm onClose={closeServiceForm} />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

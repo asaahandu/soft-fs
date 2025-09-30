@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Service requests collection
+    match /serviceRequests/{document} {
+      // Allow read and write for all users (you may want to restrict this later)
+      allow read, write: if true;
+      
+      // More secure alternative - uncomment when you implement authentication:
+      // allow read, write: if request.auth != null;
+      
+      // For admin-only access to manage requests:
+      // allow read, write: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Users collection (for future authentication)
+    match /users/{userId} {
+      // Users can read and write their own data
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Admin-specific collections
+    match /admin/{document} {
+      // Only authenticated admin users can access
+      allow read, write: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Default rule - deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
