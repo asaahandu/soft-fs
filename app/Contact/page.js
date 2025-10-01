@@ -35,10 +35,11 @@ const contactInfo = [
 
 // Social media links
 const socialLinks = [
-  { icon: Facebook, url: "#", name: "Facebook" },
-  { icon: Twitter, url: "#", name: "Twitter" },
-  { icon: Linkedin, url: "#", name: "LinkedIn" },
-  { icon: Instagram, url: "#", name: "Instagram" }
+  { icon: Facebook, url: "https://www.facebook.com/softfsgroup", name: "Facebook" },
+  { icon: Twitter, url: "https://x.com/soft_fs", name: "Twitter" },
+  { icon: Linkedin, url: "https://www.linkedin.com/company/soft-fs-group/", name: "LinkedIn" },
+  { icon: Instagram, url: "https://www.instagram.com/softfs_group", name: "Instagram" },
+  { icon: MessageCircle, url: "https://wa.me/237655571011", name: "WhatsApp" }
 ]
 
 // Services for contact form
@@ -204,22 +205,6 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <motion.div 
-                className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3 sm:py-3 rounded-full text-sm sm:text-base flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer shadow-lg"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Phone className="w-4 h-4" />
-                <span className="font-medium">Appelez Maintenant</span>
-              </motion.div>
-              <motion.div 
-                className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-6 py-3 sm:py-3 rounded-full text-sm sm:text-base flex items-center justify-center gap-2 bg-transparent transition-all duration-300 cursor-pointer"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Mail className="w-4 h-4" />
-                <span className="font-medium">Envoyez un Email</span>
-              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -605,38 +590,6 @@ export default function ContactPage() {
                 >
                   Notre bureau principal est situé au cœur de Douala, facilement accessible et équipé pour accueillir nos clients dans un environnement moderne et professionnel.
                 </motion.p>
-              </motion.div>
-
-              {/* Placeholder Map - Mobile Responsive */}
-              <motion.div 
-                className="bg-gray-200 rounded-xl h-48 sm:h-64 mb-4 sm:mb-6 flex items-center justify-center overflow-hidden"
-                variants={scaleIn}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div 
-                  className="text-center px-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <motion.div
-                    animate={{ 
-                      y: [0, -10, 0],
-                      rotate: [0, 5, -5, 0]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatType: "reverse"
-                    }}
-                  >
-                    <MapPin className="w-10 sm:w-12 h-10 sm:h-12 text-gray-400 mx-auto mb-2" />
-                  </motion.div>
-                  <p className="text-gray-500 text-sm sm:text-base font-medium">Carte Interactive</p>
-                  <p className="text-xs sm:text-sm text-gray-400">Douala, Cameroun</p>
-                </motion.div>
               </motion.div>
 
               {/* Why Contact Us - Mobile Responsive */}

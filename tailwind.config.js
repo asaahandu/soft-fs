@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
+      },
       colors: {
         'eduka-orange': '#3B4D8F',
         'eduka-teal': '#A5A6C8',

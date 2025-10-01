@@ -71,11 +71,11 @@ const teamMembers = [
     }
   },
   {
-    name: "Michael Chen",
-    role: "Architecte DevOps",
-    image: "/images/programmer.jpg",
-    description: "Spécialiste en infrastructure cloud axé sur les solutions évolutives et les pipelines de déploiement automatisés. Michael optimise nos processus de développement et garantit une livraison continue de qualité.",
-    specialties: ["Docker", "Kubernetes", "CI/CD", "Azure"],
+    name: "David Kim",
+    role: "Ingénieur IA/ML",
+    image: "/images/design.jpg",
+    description: "Expert en apprentissage automatique spécialisé dans l'analyse de données et les solutions d'automatisation intelligente.",
+    specialties: ["Python", "TensorFlow", "Machine Learning", "Data Analysis"],
     social: {
       github: "#",
       linkedin: "#",
@@ -94,18 +94,18 @@ const teamMembers = [
       twitter: "#"
     }
   },
-  {
-    name: "David Kim",
-    role: "Ingénieur IA/ML",
-    image: "/images/design.jpg",
-    description: "Expert en apprentissage automatique spécialisé dans l'analyse de données et les solutions d'automatisation intelligente. David développe des algorithmes innovants qui automatisent les processus métier.",
-    specialties: ["Python", "TensorFlow", "Machine Learning", "Data Science"],
+{
+    name: "Michael Chen",
+    role: "Architecte DevOps",
+    image: "/images/programmer.jpg",
+    description: "Spécialiste en infrastructure cloud axé sur les solutions évolutives et les pipelines de déploiement automatisés.",
+    specialties: ["Docker", "Kubernetes", "CI/CD", "Azure"],
     social: {
       github: "#",
       linkedin: "#",
       twitter: "#"
     }
-  }
+  },
 ]
 
 const whyChooseUs = [
@@ -171,20 +171,10 @@ const technologies = [
     technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Ionic", "Xamarin"]
   },
   {
-    category: "Cloud & DevOps",
-    icon: Cloud,
-    technologies: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "Jenkins"]
-  },
-  {
     category: "Design",
     icon: Palette,
     technologies: ["Figma", "Adobe XD", "Sketch", "Adobe Creative Suite", "Prototyping", "UI/UX"]
   },
-  {
-    category: "Emerging Tech",
-    icon: Globe,
-    technologies: ["AI/ML", "Blockchain", "IoT", "AR/VR", "Microservices", "GraphQL"]
-  }
 ]
 
 // Animation variants
@@ -307,22 +297,6 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
             >
-              <motion.button 
-                className="bg-eduka-blue hover:bg-eduka-blue-dark text-white px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 transition-colors whitespace-nowrap"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Play className="w-4 sm:w-5 h-4 sm:h-5" />
-                Voir Notre Histoire
-              </motion.button>
-              <motion.button 
-                className="border border-white text-white hover:bg-white hover:text-gray-800 px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 bg-transparent transition-colors whitespace-nowrap"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Nos Réalisations
-                <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
-              </motion.button>
             </motion.div>
           </motion.div>
         </div>
@@ -655,6 +629,178 @@ export default function AboutPage() {
               )
             })}
           </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Founder Section */}
+      <motion.section 
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-white"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="container mx-auto">
+          <motion.div 
+            className="text-center mb-12 sm:mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div 
+              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+              <span>LE FONDATEUR</span>
+              <motion.div 
+                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
+                initial={{ width: 0 }}
+                whileInView={{ width: "1.5rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+            </motion.div>
+
+            <motion.h2 
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Rencontrez le <span className="text-eduka-blue">Visionnaire</span> derrière Soft FS
+            </motion.h2>
+
+            <motion.p 
+              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Découvrez l'histoire et la vision de la personne qui a créé Soft FS avec une passion 
+              pour l'innovation technologique et l'excellence.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+            {/* Founder Image */}
+            <motion.div 
+              className="relative order-2 lg:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="relative flex justify-center">
+                <motion.img
+                  src="/images/promoteur.jpg"
+                  alt="Fondateur de Soft FS"
+                  className="rounded-full w-80 h-80 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px] object-cover shadow-2xl"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
+                
+                {/* Quote Card */}
+                <motion.div 
+                  className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-eduka-blue text-white p-4 sm:p-6 rounded-xl shadow-xl max-w-xs"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="text-xs sm:text-sm italic leading-relaxed">
+                    "La technologie doit servir l'humain et créer des opportunités pour tous"
+                  </div>
+                  <div className="mt-2 text-xs font-semibold">
+                    - Fondateur, Soft FS
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Founder Content */}
+            <motion.div
+              className="order-1 lg:order-2"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+
+              <motion.div 
+                className="text-eduka-blue font-semibold text-base sm:text-lg mb-6 text-center lg:text-left"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                Fondateur & CEO
+              </motion.div>
+
+              <motion.div 
+                className="space-y-4 sm:space-y-6 text-gray-600 text-sm sm:text-base leading-relaxed text-center lg:text-left"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <p>
+                  De son vrai nom Fankam Wometcha Sides, le promoteur et gérant du groupe 
+                  Soft FS est un ingénieur camerounais spécialisé en systèmes informatiques et 
+                  réseaux, titulaire d’une maîtrise en Management des Systèmes d’Information. 
+                </p>
+
+                <p>
+                  Son parcours est marqué par de solides expériences professionnelles acquises 
+                  au sein d’entreprises camerounaises et multinationales, où il a contribué de 
+                  manière significative au développement et à l’optimisation des systèmes 
+                  d’information, ainsi qu’à la conception de solutions informatiques adaptées 
+                  aux besoins stratégiques des organisations. 
+                </p>
+
+                <p>
+                  Animé par une vision claire et ambitieuse, il a fondé Soft FS afin de proposer 
+                  des services innovants en création digitale et en solutions informatiques de 
+                  qualité, avec pour objectif d’optimiser les performances et de créer une 
+                  véritable valeur ajoutée pour ses clients et partenaires.
+                </p>
+              </motion.div>
+
+              {/* Contact Founder */}
+              <motion.div 
+                className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <motion.button 
+                  className="bg-eduka-blue hover:bg-eduka-blue-dark text-black px-6 sm:px-8 py-3 rounded-full transition-colors text-sm sm:text-base whitespace-nowrap flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Linkedin className="w-4 h-4" />
+                  Connecter sur LinkedIn
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </motion.section>
 
@@ -1245,7 +1391,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <motion.div 
-              className="bg-gradient-to-r from-eduka-blue to-eduka-teal rounded-2xl p-6 sm:p-8 shadow-lg text-white max-w-4xl mx-auto"
+              className="bg-blue-700 rounded-2xl p-6 sm:p-8 shadow-lg text-white max-w-4xl mx-auto"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -1256,7 +1402,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Prêt à Transformer Votre Entreprise ?
+                Transformer Votre Entreprise avec Soft FS
               </motion.h3>
               <motion.p 
                 className="mb-6 max-w-2xl mx-auto opacity-90 text-sm sm:text-base lg:text-lg leading-relaxed"
@@ -1276,18 +1422,11 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
                 <motion.button 
-                  className="bg-white text-eduka-blue hover:bg-gray-100 px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold transition-colors whitespace-nowrap"
+                  className="bg-white text-blue-700 hover:bg-gray-100 px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold transition-colors whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Démarrer Votre Projet
-                </motion.button>
-                <motion.button 
-                  className="border-2 border-white text-white hover:bg-white hover:text-eduka-blue px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold transition-colors whitespace-nowrap"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Nous Contacter
+                  Demander un Devis
                 </motion.button>
               </motion.div>
             </motion.div>

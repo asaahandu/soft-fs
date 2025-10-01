@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -80,7 +81,7 @@
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Arial', sans-serif;
+  --font-sans: 'Poppins', 'ui-sans-serif', 'system-ui', sans-serif;
   --font-mono: 'Menlo', 'Monaco', 'Consolas', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -231,6 +232,85 @@
   }
 }
 
+/* Header Animation Keyframes */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Header Animation Classes */
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-out forwards;
 }
@@ -245,6 +325,55 @@
 
 .animate-bounceIn {
   animation: bounceIn 0.6s ease-out forwards;
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.8s ease-out forwards;
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.6s ease-out forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.animate-slideInUp {
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+.animate-modalSlideIn {
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Animation Delays */
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
 }
 
 /* Form field enhancements */
@@ -405,4 +534,66 @@ textarea::-webkit-scrollbar-thumb:hover {
   .container {
     max-width: 1400px;
   }
+}
+
+/* Background pattern styles */
+.bg-pattern-chain {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-pattern-chain::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/background.png');
+  background-size: 80px 80px;
+  background-repeat: repeat;
+  opacity: 0.05;
+  z-index: 1;
+  animation: chainMove 60s linear infinite;
+  pointer-events: none;
+}
+
+.bg-pattern-chain::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: -40px;
+  bottom: -40px;
+  background-image: url('/images/background.png');
+  background-size: 80px 80px;
+  background-repeat: repeat;
+  opacity: 0.02;
+  z-index: 1;
+  animation: chainMove 80s linear infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes chainMove {
+  0% {
+    background-position: 0 0, 40px 40px;
+  }
+  100% {
+    background-position: 80px 80px, 120px 120px;
+  }
+}
+
+/* Content sections with background pattern */
+.content-section {
+  position: relative;
+  z-index: 2;
+}
+
+/* Subtle version for lighter sections */
+.bg-pattern-subtle::before {
+  opacity: 0.015 !important;
+}
+
+.bg-pattern-subtle::after {
+  opacity: 0.01 !important;
 }

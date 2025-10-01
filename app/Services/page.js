@@ -68,34 +68,38 @@ const scaleIn = {
 const servicesData = [
   {
     id: 1,
-    image: "/images/web-development.jpg",
-    title: "Développement Web",
-    subtitle: "Solutions Web Full-Stack",
+    image: "/images/developpement.jpg",
+    title: "Développement d'applications Web & Mobile",
+    subtitle: "Solutions Digitales Complètes",
     rating: 5,
-    clients: 25,
+    clients: 45,
     duration: "À votre rythme",
-    shortDescription: "Applications web personnalisées construites avec des technologies modernes",
-    fullDescription: "Nous créons des applications web puissantes et évolutives en utilisant des technologies de pointe comme React, Next.js, Node.js et les plateformes cloud. Notre approche de développement full-stack assure une intégration transparente entre les systèmes frontend et backend.",
+    shortDescription: "Applications web et mobiles personnalisées construites avec des technologies modernes",
+    fullDescription: "Nous créons des solutions digitales complètes incluant des applications web puissantes et des applications mobiles hautes performances. Notre expertise couvre le développement full-stack web avec React, Next.js, Node.js, ainsi que le développement d'applications mobiles natives et multiplateformes pour iOS et Android.",
     features: [
       "Conception web responsive pour tous les appareils",
       "Frameworks JavaScript modernes (React, Vue, Angular)",
+      "Développement d'applications mobiles natives (iOS/Android)",
+      "Développement multiplateforme (React Native/Flutter)",
       "Développement d'API backend avec Node.js/Python",
       "Conception et optimisation de bases de données",
       "Déploiement et hébergement cloud",
       "Optimisation SEO et amélioration des performances",
       "Développement d'applications web progressives (PWA)",
+      "Notifications push et fonctionnalités temps réel",
+      "Soumission et optimisation App Store",
       "Intégration e-commerce et paiement"
     ],
-    technologies: ["React", "Next.js", "Node.js", "MongoDB", "AWS", "Docker"],
+    technologies: ["React", "Next.js", "React Native", "Flutter", "Node.js", "MongoDB", "Firebase", "Swift", "Kotlin", "AWS", "Docker"],
     icon: Code,
-    color: "from-blue-500 to-blue-700",
-    price: "50,000FCFA",
-    timeline: "2-8 semaines"
+    color: "from-blue-500 to-green-600",
+    price: "À partir de 50,000FCFA",
+    timeline: "2-12 semaines"
   },
   {
     id: 2,
-    image: "/images/graphic-design.jpg",
-    title: "Design Graphique",
+    image: "/images/graphisme.jpg",
+    title: "Conception et Production Graphique",
     subtitle: "Solutions Visuelles Créatives",
     rating: 5,
     clients: 30,
@@ -117,32 +121,6 @@ const servicesData = [
     color: "from-purple-500 to-pink-500",
     price: "15000FCFA",
     timeline: "1-3 semaines"
-  },
-  {
-    id: 3,
-    image: "/images/mobile-development.jpg",
-    title: "Développement d'Applications Mobiles",
-    subtitle: "Applications iOS et Android",
-    rating: 5,
-    clients: 20,
-    duration: "À votre rythme",
-    shortDescription: "Applications mobiles natives et multiplateformes",
-    fullDescription: "Nous développons des applications mobiles hautes performances pour les plateformes iOS et Android en utilisant des technologies natives et multiplateformes. Nos applications sont conçues pour une expérience utilisateur optimale et une fonctionnalité transparente.",
-    features: [
-      "Développement natif iOS et Android",
-      "Développement multiplateforme avec React Native/Flutter",
-      "Design UI/UX optimisé pour mobile",
-      "Intégration API et connectivité backend",
-      "Notifications push et fonctionnalités temps réel",
-      "Soumission et optimisation App Store",
-      "Surveillance des performances et analytics",
-      "Fonctionnalité hors ligne et synchronisation de données"
-    ],
-    technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase", "Redux"],
-    icon: Smartphone,
-    color: "from-green-500 to-emerald-600",
-    price: "100,000FCFA",
-    timeline: "3-12 semaines"
   }
 ]
 
@@ -309,22 +287,13 @@ export default function ServicesPage() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-eduka-blue text-white hover:bg-blue-700 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 transition-colors shadow-lg font-semibold w-full sm:w-auto"
               >
-                <span className="hidden sm:inline">Voir Nos Réalisations</span>
-                <span className="sm:hidden">Nos Réalisations</span>
+                <span>Obtenez un Devis</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.div>
-              </motion.button>
-              <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 bg-transparent transition-colors shadow-lg font-semibold w-full sm:w-auto"
-              >
-                Devis Gratuit
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.button>
             </motion.div>
           </motion.div>
@@ -549,20 +518,9 @@ export default function ServicesPage() {
                         transition={{ duration: 0.3 }}
                         src={service.image}
                         alt={service.title}
-                        className="rounded-lg sm:rounded-2xl shadow-2xl w-full h-[250px] sm:h-[350px] lg:h-[400px] object-cover"
+                        className="rounded-lg sm:rounded-2xl shadow-2xl w-full h-[550px] sm:h-[350px] lg:h-[400px]"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg sm:rounded-2xl" />
-                      
-                      {/* Floating badge */}
-                      <motion.div 
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.5 }}
-                        whileHover={{ scale: 1.05 }}
-                        className="absolute top-3 left-3 sm:top-6 sm:left-6 bg-white/90 backdrop-blur-sm text-eduka-blue px-2 py-1 sm:px-4 sm:py-2 rounded-full font-semibold shadow-lg text-xs sm:text-sm"
-                      >
-                        ⭐ {service.rating}.0 Note
-                      </motion.div>
                     </motion.div>
                   </motion.div>
                 </motion.div>

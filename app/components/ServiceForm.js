@@ -16,6 +16,7 @@ import {
   Shield,
   X
 } from 'lucide-react';
+import { useServiceRequests } from '../../hooks/useServiceRequests';
 
 const ServiceForm = ({ onClose }) => {
   const { createRequest } = useServiceRequests();

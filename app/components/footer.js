@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github, ExternalLink } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, ExternalLink } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -8,13 +8,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <img 
-                  src="/images/soft-fs.png" 
-                  alt="Soft FS Logo" 
-                  className="w-32 h-16 object-contain"
-                />
+            <div className="flex items-center group">
+              <img 
+                src="/images/background.png" 
+                alt="Soft FS Logo" 
+                className="h-8 w-auto sm:h-10 md:h-12 transition-all duration-500 transform group-hover:scale-110"
+                width={300}
+                height={100}
+              />
+              <div>
+                <span className="text-white font-black italic text-xl pl-1 sm:text-2xl md:text-3xl">SOFT FS</span>
+              </div>
+              <div className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
               </div>
             </div>
             <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xs">
@@ -23,25 +29,32 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4 pt-2">
               <a 
-                href="#" 
+                href="https://www.facebook.com/softfsgroup" 
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-200 hover:scale-110 transform"
-                aria-label="LinkedIn"
+                aria-label="Facebook"
               >
-                <Linkedin size={20} />
+                <Facebook size={20} />
               </a>
               <a 
-                href="#" 
+                href="https://www.instagram.com/softfs_group/" 
+                className="text-gray-400 hover:text-pink-400 transition-colors duration-200 hover:scale-110 transform"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <a 
+                href="https://x.com/soft_fs" 
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-200 hover:scale-110 transform"
-                aria-label="Twitter"
+                aria-label="X (Twitter)"
               >
                 <Twitter size={20} />
               </a>
               <a 
-                href="#" 
+                href="https://www.linkedin.com/company/soft-fs-group/" 
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-200 hover:scale-110 transform"
-                aria-label="GitHub"
+                aria-label="LinkedIn"
               >
-                <Github size={20} />
+                <Linkedin size={20} />
               </a>
             </div>
           </div>

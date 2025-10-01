@@ -63,20 +63,20 @@ const stats = [
 const services = [
   {
     image: "/images/web-development.jpg",
-    title: "Développement Web",
+    title: "Développement d'applications Web et Mobile",
     rating: 5,
     clients: 25,
     duration: "À votre rythme",
   },
   {
     image: "/images/graphic-design.jpg",
-    title: "Design Graphique",
+    title: "Conception et Production graphique",
     clients: 30,
     duration: "Quand vous voulez",
   },
   {
     image: "/images/mobile-development.jpg",
-    title: "Développement d'Applications Mobiles",
+    title: "Photographie et Videographie",
     rating: 5,
     clients: 20,
     duration: "À votre rythme",
@@ -372,14 +372,7 @@ export default function HomePage() {
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
             >
-              Nos Services
-            </motion.button>
-            <motion.button 
-              className="border border-white text-white hover:bg-white hover:text-gray-800 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 bg-transparent transition-colors touch-manipulation"
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Nous Contacter
+              Demander un Devis
             </motion.button>
           </motion.div>
         </div>
@@ -388,7 +381,7 @@ export default function HomePage() {
       
       {/*Features Section - Overlapping Cards*/}
       <motion.section 
-        className="relative -mt-8 sm:-mt-12 md:-mt-16 z-20 px-4"
+        className="relative -mt-8 sm:-mt-12 md:-mt-16 z-20 px-4 bg-pattern-chain bg-pattern-subtle"
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -466,7 +459,7 @@ export default function HomePage() {
       <section className="py-4 sm:py-6 md:py-8 lg:py-16 bg-gray-50"></section>
       {/*About Section*/}
       <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4"
+        className="py-12 sm:py-16 md:py-20 px-4 bg-pattern-chain content-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -744,7 +737,7 @@ export default function HomePage() {
       </motion.section>
       {/*Services Section*/}
       <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4 bg-gray-50"
+        className="py-12 sm:py-16 md:py-20 px-4 bg-gray-50 bg-pattern-chain bg-pattern-subtle content-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -906,7 +899,7 @@ export default function HomePage() {
 
       {/* Our Team Section */}
       <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4 bg-white"
+        className="py-12 sm:py-16 md:py-20 px-4 bg-white bg-pattern-chain content-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -1077,7 +1070,7 @@ export default function HomePage() {
       
       {/* Why Choose Us Section */}
       <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 to-white"
+        className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 to-white bg-pattern-chain bg-pattern-subtle content-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
