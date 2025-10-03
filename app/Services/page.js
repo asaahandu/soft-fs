@@ -6,7 +6,6 @@ import { useRef } from "react"
 import {CheckCircle, Users, Clock, Star, Code, Palette, Smartphone, Globe, Database, Shield, Zap, Settings, ArrowRight, Phone, Mail, X} from "lucide-react"
 import Header from "../components/header"
 import Footer from "../components/footer"
-import ServiceForm from "../components/ServiceForm"
 
 // Animation variants
 const fadeInUp = {
@@ -64,10 +63,96 @@ const scaleIn = {
   }
 }
 
-// Detailed services data with comprehensive information
+// Detailed services data with comprehensive information for all services
 const servicesData = [
   {
     id: 1,
+    image: "/images/graphisme.jpg",
+    title: "Conception et Production Graphique",
+    subtitle: "Solutions Visuelles Créatives",
+    rating: 5,
+    clients: 30,
+    duration: "Quand vous voulez",
+    shortDescription: "Designs visuels époustouflants qui captivent et convertissent",
+    fullDescription: "Notre équipe créative offre des solutions de design graphique exceptionnelles qui renforcent votre identité de marque et engagent votre audience. Des logos aux supports marketing, nous créons des visuels qui racontent votre histoire efficacement.",
+    features: [
+      "Conception de logo et identité de marque",
+      "Supports marketing (brochures, flyers, bannières)",
+      "Design UI/UX web et mobile",
+      "Graphiques et modèles pour réseaux sociaux",
+      "Design d'impression et emballage",
+      "Infographies et visualisation de données",
+      "Guides de marque et chartes graphiques",
+      "Retouche et édition photo"
+    ],
+    technologies: ["Adobe Creative Suite", "Figma", "Sketch", "Canva Pro", "Illustrator", "Photoshop"],
+    icon: Palette,
+    color: "from-purple-500 to-pink-500",
+    price: "15000FCFA",
+    timeline: "1-3 semaines"
+  },
+  {
+    id: 2,
+    image: "/images/photographie.jpg",
+    title: "Photographie & Vidéographie",
+    subtitle: "Création de Contenu Visuel Premium",
+    rating: 5,
+    clients: 35,
+    duration: "Flexible",
+    shortDescription: "Services professionnels de photographie et vidéographie pour tous vos événements et projets",
+    fullDescription: "Notre équipe de photographes et vidéographes professionnels capture vos moments les plus précieux avec une expertise technique et artistique exceptionnelle. Des événements corporatifs aux productions commerciales, nous créons du contenu visuel qui raconte votre histoire de manière captivante.",
+    features: [
+      "Photographie d'événements professionnels",
+      "Sessions photo portrait et corporate",
+      "Photographie de produits e-commerce",
+      "Vidéographie événementielle HD/4K",
+      "Production de clips promotionnels",
+      "Couverture photo/vidéo mariage",
+      "Photographie architecturale",
+      "Vidéos corporatives et institutionnelles",
+      "Post-production et retouche professionnelle",
+      "Streaming en direct d'événements",
+      "Photographie aérienne par drone",
+      "Galeries en ligne sécurisées"
+    ],
+    technologies: ["Canon EOS R5", "Sony FX3", "DJI Mavic Pro", "Adobe Lightroom", "Adobe Premiere Pro", "DaVinci Resolve"],
+    icon: Database,
+    color: "from-pink-500 to-purple-600",
+    price: "À partir de 25,000FCFA",
+    timeline: "1-7 jours"
+  },
+  {
+    id: 3,
+    image: "/images/serigraphie.jpg",
+    title: "Serigraphie & Impression Numérique",
+    subtitle: "Solutions d'Impression Professionnelle",
+    rating: 5,
+    clients: 25,
+    duration: "Selon projet",
+    shortDescription: "Services d'impression haute qualité pour tous vos besoins marketing et promotionnels",
+    fullDescription: "Notre service de sérigraphie et d'impression numérique offre des solutions complètes pour tous vos besoins d'impression commerciale. De la conception à la production, nous garantissons une qualité exceptionnelle pour vos supports de communication, produits promotionnels et matériels marketing.",
+    features: [
+      "Sérigraphie haute qualité sur textile",
+      "Impression numérique grand format",
+      "Cartes de visite et papeterie d'entreprise",
+      "Banderoles et signalétique extérieure",
+      "Objets promotionnels personnalisés",
+      "Catalogues et brochures professionnels",
+      "Stickers et étiquettes adhésives",
+      "Impression sur supports rigides",
+      "Finitions de luxe (dorure, gaufrage)",
+      "Emballages personnalisés",
+      "Supports textiles événementiels",
+      "Certification qualité ISO"
+    ],
+    technologies: ["Sérigraphie", "Impression Offset", "Impression Numérique", "Sublimation", "Flexographie", "Adobe Creative Suite"],
+    icon: Globe,
+    color: "from-orange-500 to-red-500",
+    price: "À partir de 5,000FCFA",
+    timeline: "1-5 jours"
+  },
+  {
+    id: 4,
     image: "/images/developpement.jpg",
     title: "Développement d'applications Web & Mobile",
     subtitle: "Solutions Digitales Complètes",
@@ -97,54 +182,64 @@ const servicesData = [
     timeline: "2-12 semaines"
   },
   {
-    id: 2,
-    image: "/images/graphisme.jpg",
-    title: "Conception et Production Graphique",
-    subtitle: "Solutions Visuelles Créatives",
+    id: 5,
+    image: "/images/reseau.jpg",
+    title: "Réseau Informatique & Support Utilisateur",
+    subtitle: "Infrastructure IT & Support Technique",
     rating: 5,
-    clients: 30,
-    duration: "Quand vous voulez",
-    shortDescription: "Designs visuels époustouflants qui captivent et convertissent",
-    fullDescription: "Notre équipe créative offre des solutions de design graphique exceptionnelles qui renforcent votre identité de marque et engagent votre audience. Des logos aux supports marketing, nous créons des visuels qui racontent votre histoire efficacement.",
+    clients: 40,
+    duration: "Support continu",
+    shortDescription: "Solutions complètes de réseau informatique et support technique professionnel",
+    fullDescription: "Nous offrons des services complets d'infrastructure informatique incluant la conception, l'installation et la maintenance de réseaux d'entreprise. Notre équipe de support technique assure un service client de qualité supérieure pour garantir le bon fonctionnement de vos systèmes informatiques.",
     features: [
-      "Conception de logo et identité de marque",
-      "Supports marketing (brochures, flyers, bannières)",
-      "Design UI/UX web et mobile",
-      "Graphiques et modèles pour réseaux sociaux",
-      "Design d'impression et emballage",
-      "Infographies et visualisation de données",
-      "Guides de marque et chartes graphiques",
-      "Retouche et édition photo"
+      "Conception et installation de réseaux LAN/WAN",
+      "Configuration de serveurs d'entreprise",
+      "Mise en place de systèmes de sécurité réseau",
+      "Support technique 24/7",
+      "Maintenance préventive des équipements",
+      "Sauvegarde et récupération de données",
+      "Formation utilisateurs sur logiciels",
+      "Gestion des comptes et permissions",
+      "Monitoring réseau en temps réel",
+      "Virtualisation de serveurs",
+      "Solutions de télétravail sécurisé",
+      "Audit de sécurité informatique"
     ],
-    technologies: ["Adobe Creative Suite", "Figma", "Sketch", "Canva Pro", "Illustrator", "Photoshop"],
-    icon: Palette,
-    color: "from-purple-500 to-pink-500",
-    price: "15000FCFA",
-    timeline: "1-3 semaines"
-  }
-]
-
-// Additional services that complement the main three
-const additionalServices = [
-  {
-    icon: Globe,
-    title: "Serigraphie & Impression Numérique",
-    description: "Haute qualité d'impression pour tous vos besoins marketing et promotionnels."
-  },
-  {
-    icon: Database,
-    title: "Photographie & Vidéographie",
-    description: "Capturez vos moments précieux avec notre service professionnel de photographie et vidéographie."
-  },
-  {
+    technologies: ["Windows Server", "Linux", "Cisco", "VMware", "Active Directory", "VPN", "Firewall", "RAID"],
     icon: Shield,
-    title: "Reseau informatique & Support utilisateur",
-    description: "Audits de sécurité complets et mise en œuvre de mesures de sécurité robustes pour vos systèmes."
+    color: "from-green-500 to-blue-600",
+    price: "À partir de 75,000FCFA",
+    timeline: "Support permanent"
   },
   {
+    id: 6,
+    image: "/images/programmer.jpg",
+    title: "Audit des Systèmes d'Information & Fourniture Informatique",
+    subtitle: "Optimisation IT & Solutions Matérielles",
+    rating: 5,
+    clients: 20,
+    duration: "Selon évaluation",
+    shortDescription: "Audits complets SI et fourniture d'équipements informatiques professionnels",
+    fullDescription: "Nos experts en systèmes d'information réalisent des audits complets pour optimiser vos infrastructures IT. Nous proposons également des solutions de fourniture d'équipements informatiques adaptées à vos besoins spécifiques, garantissant performance et compatibilité.",
+    features: [
+      "Audit complet des systèmes d'information",
+      "Évaluation de la sécurité informatique",
+      "Analyse de performance des réseaux",
+      "Recommandations d'optimisation",
+      "Fourniture d'ordinateurs et serveurs",
+      "Équipements réseau professionnels",
+      "Logiciels et licences d'entreprise",
+      "Installation et configuration matériel",
+      "Garantie et service après-vente",
+      "Formation technique du personnel",
+      "Documentation technique complète",
+      "Support migration de données"
+    ],
+    technologies: ["Network Analysis", "Security Assessment", "HP Enterprise", "Dell EMC", "Microsoft Licensing", "Cisco Equipment"],
     icon: Settings,
-    title: "Audit des Systèmes d'Information & Fourniture informatiques",
-    description: "Intégration transparente de différents systèmes logiciels et API tierces pour un flux de travail optimal."
+    color: "from-blue-600 to-indigo-700",
+    price: "Devis personnalisé",
+    timeline: "2-8 semaines"
   }
 ]
 
@@ -186,7 +281,6 @@ export default function ServicesPage() {
   // Animation refs
   const [heroRef, heroInView] = useScrollAnimation()
   const [servicesRef, servicesInView] = useScrollAnimation()
-  const [additionalRef, additionalInView] = useScrollAnimation()
   const [processRef, processInView] = useScrollAnimation()
   const [ctaRef, ctaInView] = useScrollAnimation()
 
@@ -216,7 +310,7 @@ export default function ServicesPage() {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/images/web-development.jpg')`,
+            backgroundImage: `url('/images/services.jpg')`,
           }}
         />
         
@@ -224,7 +318,7 @@ export default function ServicesPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute inset-0 bg-blue-900/80" 
+          className="absolute inset-0 bg-black/60" 
         />
 
         <div className="container mx-auto relative z-10 w-full">
@@ -263,11 +357,11 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: 0.8 }}
                 className="text-eduka-blue"
               >
-                Technologiques
+                technologiques
               </motion.span>
               <br className="hidden sm:block" />
               <span className="sm:hidden"> </span>
-              Complètes pour Votre Entreprise
+              complètes pour votre entreprise
             </motion.h1>
 
             <motion.p 
@@ -287,7 +381,7 @@ export default function ServicesPage() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-eduka-blue text-white hover:bg-blue-700 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 transition-colors shadow-lg font-semibold w-full sm:w-auto"
               >
-                <span>Obtenez un Devis</span>
+                <span>Obtenez un devis</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
@@ -315,7 +409,7 @@ export default function ServicesPage() {
           >
             <motion.div 
               variants={fadeInUp}
-              className="text-eduka-blue font-semibold mb-4 sm:mb-6 flex items-center justify-center gap-2 text-sm sm:text-base"
+              className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 flex items-center justify-center gap-2 text-sm sm:text-base"
             >
               <motion.div 
                 initial={{ width: 0 }}
@@ -323,7 +417,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="h-0.5 bg-eduka-blue hidden sm:block" 
               />
-              SERVICES PRINCIPAUX
+              TOUS NOS SERVICES
               <motion.div 
                 initial={{ width: 0 }}
                 animate={servicesInView ? { width: 24 } : { width: 0 }}
@@ -336,22 +430,22 @@ export default function ServicesPage() {
               variants={fadeInUp}
               className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6"
             >
-              Nos Services <motion.span 
+              Tous nos <motion.span 
                 initial={{ opacity: 0 }}
                 animate={servicesInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
                 className="text-eduka-blue"
               >
-                Essentiels
-              </motion.span>
+                services
+              </motion.span> détaillés
             </motion.h2>
 
             <motion.p 
               variants={fadeInUp}
               className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed"
             >
-              Nous nous spécialisons dans trois domaines principaux de solutions technologiques, chacun conçu pour 
-              aider votre entreprise à prospérer dans le paysage numérique.
+              Découvrez l'ensemble complet de nos solutions technologiques, chacune conçue avec expertise pour 
+              répondre aux besoins spécifiques de votre entreprise et vous accompagner dans votre transformation numérique.
             </motion.p>
           </motion.div>
 
@@ -437,7 +531,6 @@ export default function ServicesPage() {
                           <motion.span
                             key={idx}
                             variants={scaleIn}
-                            whileHover={{ scale: 1.05, y: -2 }}
                             className="bg-white border border-gray-200 text-gray-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover:border-eduka-blue hover:text-eduka-blue transition-colors cursor-pointer"
                           >
                             {tech}
@@ -457,7 +550,6 @@ export default function ServicesPage() {
                       >
                         <motion.div 
                           variants={fadeInUp}
-                          whileHover={{ y: -5 }}
                           className="text-center"
                         >
                           <motion.div 
@@ -472,7 +564,6 @@ export default function ServicesPage() {
                         </motion.div>
                         <motion.div 
                           variants={fadeInUp}
-                          whileHover={{ y: -5 }}
                           className="text-center"
                         >
                           <motion.div 
@@ -487,7 +578,6 @@ export default function ServicesPage() {
                         </motion.div>
                         <motion.div 
                           variants={fadeInUp}
-                          whileHover={{ y: -5 }}
                           className="text-center"
                         >
                           <motion.div 
@@ -511,14 +601,12 @@ export default function ServicesPage() {
                   >
                     <motion.div 
                       whileHover={{ y: -10 }}
-                      className="relative"
+                      className="relative lg:h-full"
                     >
                       <motion.img
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
                         src={service.image}
                         alt={service.title}
-                        className="rounded-lg sm:rounded-2xl shadow-2xl w-full h-[550px] sm:h-[350px] lg:h-[400px]"
+                        className="rounded-lg sm:rounded-2xl shadow-2xl w-full h-[320px] sm:h-[320px] lg:h-full object-cover object-center"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg sm:rounded-2xl" />
                     </motion.div>
@@ -530,119 +618,7 @@ export default function ServicesPage() {
         </div>
       </motion.section>
 
-      {/* Additional Services */}
-      <motion.section 
-        ref={additionalRef}
-        initial="hidden"
-        animate={additionalInView ? "visible" : "hidden"}
-        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white"
-      >
-        <div className="container mx-auto">
-          <motion.div 
-            variants={staggerChildren}
-            className="text-center mb-12 sm:mb-16 px-2"
-          >
-            <motion.div 
-              variants={fadeInUp}
-              className="text-eduka-blue font-semibold mb-4 sm:mb-6 flex items-center justify-center gap-2 text-sm sm:text-base"
-            >
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={additionalInView ? { width: 24 } : { width: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="h-0.5 bg-eduka-blue hidden sm:block" 
-              />
-              SERVICES ADDITIONNELS
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={additionalInView ? { width: 24 } : { width: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="h-0.5 bg-eduka-blue hidden sm:block" 
-              />
-            </motion.div>
 
-            <motion.h2 
-              variants={fadeInUp}
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6"
-            >
-              Plus de Façons de Nous <motion.span 
-                initial={{ opacity: 0 }}
-                animate={additionalInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="text-eduka-blue"
-              >
-                Aider
-              </motion.span>
-            </motion.h2>
-
-            <motion.p 
-              variants={fadeInUp}
-              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed"
-            >
-              Au-delà de nos services principaux, nous offrons des solutions supplémentaires pour soutenir 
-              votre parcours complet de transformation numérique.
-            </motion.p>
-          </motion.div>
-
-          <motion.div 
-            variants={staggerChildren}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 px-4 sm:px-0"
-          >
-            {additionalServices.map((service, index) => {
-              const IconComponent = service.icon
-              return (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  whileHover={{ 
-                    y: -10,
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                  className="bg-gray-50 rounded-xl p-6 sm:p-8 hover:shadow-lg transition-all duration-300 group border border-gray-100"
-                >
-                  <motion.div 
-                    whileHover={{ 
-                      scale: 1.1, 
-                      rotate: 10,
-                      transition: { duration: 0.3 }
-                    }}
-                    className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-eduka-blue to-blue-700 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg"
-                  >
-                    <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                  </motion.div>
-                  
-                  <motion.h3 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                    className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4 text-center group-hover:text-eduka-blue transition-colors duration-300 leading-tight"
-                  >
-                    {service.title}
-                  </motion.h3>
-                  
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
-                    className="text-gray-600 text-center leading-relaxed text-sm sm:text-base"
-                  >
-                    {service.description}
-                  </motion.p>
-                  
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      whileHover={{ width: 48 }}
-                      className="h-1 bg-gradient-to-r from-eduka-blue to-blue-700 rounded-full mx-auto transition-all duration-300"
-                    />
-                  </div>
-                </motion.div>
-              )
-            })}
-          </motion.div>
-        </div>
-      </motion.section>
 
       {/* Our Process */}
       <motion.section 
@@ -658,7 +634,7 @@ export default function ServicesPage() {
           >
             <motion.div 
               variants={fadeInUp}
-              className="text-eduka-blue font-semibold mb-4 flex items-center justify-center gap-2"
+              className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 flex items-center justify-center gap-2"
             >
               <motion.div 
                 initial={{ width: 0 }}
@@ -677,16 +653,16 @@ export default function ServicesPage() {
 
             <motion.h2 
               variants={fadeInUp}
-              className="text-4xl font-bold text-gray-800 mb-4"
+              className="font-bold text-gray-800 mb-4"
             >
-              Comment Nous <motion.span 
+              Comment nous <motion.span 
                 initial={{ opacity: 0 }}
                 animate={processInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
                 className="text-eduka-blue"
               >
-                Travaillons
-              </motion.span> Avec Vous
+                travaillons
+              </motion.span> avec vous
             </motion.h2>
 
             <motion.p 
@@ -793,24 +769,10 @@ export default function ServicesPage() {
               whileHover={{ 
                 scale: 1.05, 
                 y: -2,
-                boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
-              }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => router.push('/Contact')}
-              className="bg-white text-eduka-blue hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-lg w-full sm:w-auto"
-            >
-              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-              Appelez-Nous
-            </motion.button>
-            <motion.button
-              variants={fadeInUp}
-              whileHover={{ 
-                scale: 1.05, 
-                y: -2,
                 backgroundColor: "rgba(255,255,255,0.1)"
               }}
               whileTap={{ scale: 0.95 }}
-              onClick={openServiceForm}
+              onClick={() => router.push('/Contact')}
               className="border-2 border-white text-white hover:bg-white hover:text-eduka-blue px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-lg w-full sm:w-auto"
             >
               <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -824,7 +786,6 @@ export default function ServicesPage() {
           >
             <motion.div 
               variants={fadeInUp}
-              whileHover={{ y: -5 }}
               className="text-center"
             >
               <motion.div 
@@ -839,7 +800,6 @@ export default function ServicesPage() {
             </motion.div>
             <motion.div 
               variants={fadeInUp}
-              whileHover={{ y: -5 }}
               className="text-center"
             >
               <motion.div 
@@ -854,7 +814,6 @@ export default function ServicesPage() {
             </motion.div>
             <motion.div 
               variants={fadeInUp}
-              whileHover={{ y: -5 }}
               className="text-center"
             >
               <motion.div 
@@ -872,50 +831,6 @@ export default function ServicesPage() {
       </motion.section>
       
       <Footer />
-
-      {/* Service Form Modal */}
-      <AnimatePresence>
-        {isServiceFormOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4"
-            onClick={closeServiceForm}
-          >
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="relative w-full max-w-xs sm:max-w-2xl lg:max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close button */}
-              <motion.button
-                initial={{ opacity: 0, rotate: -90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                transition={{ delay: 0.2 }}
-                whileHover={{ scale: 1.1, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={closeServiceForm}
-                className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-colors group"
-              >
-                <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 group-hover:text-gray-800" />
-              </motion.button>
-              
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1 }}
-              >
-                <ServiceForm onClose={closeServiceForm} />
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

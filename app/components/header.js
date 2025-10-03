@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Search, Phone, Mail, MapPin, X, Menu } from "lucide-react"
-import ServiceForm from './ServiceForm';
 import Image from 'next/image';
 
 export default function Header() {
@@ -36,131 +35,107 @@ export default function Header() {
   }, []);
   return (
     <>
-      {/* Top Bar - Now visible on mobile with location and phone only */}
-      <div className="bg-eduka-orange text-white py-2 px-4 animate-fadeInDown">
-        {/* Mobile Layout - Only location and phone */}
-        <div className="container mx-auto sm:hidden">
-          <div className="flex justify-between items-center text-xs">
+      {/* Top Contact Bar */}
+      <div className="bg-eduka-orange text-white py-3 px-4 animate-fadeInDown">
+        <div className="container mx-auto">
+          {/* Mobile Layout - Compact contact info */}
+          <div className="flex justify-between items-center text-xs sm:hidden">
             <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-              <MapPin className="w-3 h-3 flex-shrink-0 animate-bounce" />
-              <span className="animate-fadeInLeft">Douala</span>
+              <MapPin className="w-3 h-3 flex-shrink-0" />
+              <span>Douala</span>
             </div>
             <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-              <Phone className="w-3 h-3 flex-shrink-0 hover:rotate-12 transition-transform duration-300" />
-              <span className="whitespace-nowrap animate-fadeInRight">+237 671178892</span>
-            </div>
-          </div>
-        </div>
-        
-        {/* Desktop Layout - All info */}
-        <div className="container mx-auto hidden sm:flex flex-col sm:flex-row sm:justify-between sm:items-center text-xs sm:text-sm">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-6 mb-2 sm:mb-0">
-            <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-              <MapPin className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 animate-bounce" />
-              <span className="animate-fadeInLeft">Douala</span>
-            </div>
-            <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-              <Mail className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 hover:rotate-12 transition-transform duration-300" />
-              <span className="truncate animate-fadeInLeft animation-delay-200">contact@softfs.com</span>
+              <Phone className="w-3 h-3 flex-shrink-0" />
+              <span>+237 657765185</span>
             </div>
           </div>
-          <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <Phone className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 hover:rotate-12 transition-transform duration-300" />
-            <span className="whitespace-nowrap animate-fadeInRight">+237 671178892</span>
+          
+          {/* Desktop Layout - Full contact info */}
+          <div className="hidden sm:flex justify-between items-center text-sm">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+                <span>Douala</span>
+              </div>
+              <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <Mail className="w-4 h-4 flex-shrink-0" />
+                <span>info@softfsgroup.com</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+              <Phone className="w-4 h-4 flex-shrink-0" />
+              <span>+237 657765185</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* Main Navigation Header */}
       <header className={`bg-white shadow-sm sticky top-0 z-40 transition-all duration-500 ${
         isScrolled ? 'shadow-lg bg-white/95 backdrop-blur-md' : ''
       }`}>
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
+        <div className="container mx-auto px-4">
+          <div className={`flex items-center justify-between transition-all duration-500 ${
+            isScrolled ? 'py-2' : 'py-4'
+          }`}>
+            {/* Logo Section */}
             <div className="flex items-center">
               <img 
-                src="/images/background.png" 
+                src="/images/logo1.png" 
                 alt="Soft FS Logo" 
-                className={`h-8 w-auto sm:h-10 md:h-22 transition-all duration-500 transform group-hover:scale-110 ${
-                  isScrolled ? 'h-6 sm:h-8 md:h-10' : ''
+                className={`w-auto transition-all duration-500 transform hover:scale-105 ${
+                  isScrolled 
+                    ? 'h-10 sm:h-12' 
+                    : 'h-12 sm:h-16 md:h-20'
                 }`}
                 width={300}
                 height={100}
-                quality={100}
-
               />
-              <div>
-                <span className="text-black-700 font-black italic text-2xl pl-1 sm:text-3xl md:text-4xl">SOFT FS</span>
-                </div>
-              <div className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-2 h-2 bg-eduka-orange rounded-full animate-ping"></div>
-              </div>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center mr-20 gap-8">
               <a 
                 href="/" 
-                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 relative group animate-fadeInUp animation-delay-100 hover:scale-105 hover:-translate-y-1"
+                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-orange-50"
               >
                 Accueil
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-eduka-orange transition-all duration-300 group-hover:w-full"></span>
               </a>
               <a 
                 href="/Services" 
-                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 relative group animate-fadeInUp animation-delay-200 hover:scale-105 hover:-translate-y-1"
+                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-orange-50"
               >
                 Nos Services
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-eduka-orange transition-all duration-300 group-hover:w-full"></span>
               </a>
               <a 
                 href="/About" 
-                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 relative group animate-fadeInUp animation-delay-300 hover:scale-105 hover:-translate-y-1"
+                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-orange-50"
               >
                 A Propos
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-eduka-orange transition-all duration-300 group-hover:w-full"></span>
               </a>
               <a 
                 href="/Contact" 
-                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 relative group animate-fadeInUp animation-delay-400 hover:scale-105 hover:-translate-y-1"
+                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-orange-50"
               >
                 Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-eduka-orange transition-all duration-300 group-hover:w-full"></span>
               </a>
             </nav>
 
-            {/* Right Side - Desktop */}
-            <div className="hidden md:flex items-center gap-4 animate-fadeInRight">
-              <button
-                className="bg-gradient-to-r from-eduka-orange to-orange-500 hover:from-orange-500 hover:to-eduka-orange text-white px-4 lg:px-6 py-2 rounded-full font-medium transition-all duration-300 text-sm lg:text-base whitespace-nowrap transform hover:scale-105 hover:shadow-lg hover:shadow-orange-200 active:scale-95 group relative overflow-hidden"
-                onClick={openServiceForm}
-              >
-                <span className="relative z-10 group-hover:animate-pulse">
-                  <span className="hidden lg:inline">Postuler pour un Service</span>
-                  <span className="lg:hidden">Postuler</span>
-                </span>
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                <div className="absolute -top-1 -left-1 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="flex items-center gap-2 md:hidden animate-fadeInRight">
-              <button
-                className="bg-gradient-to-r from-eduka-orange to-orange-500 hover:from-orange-500 hover:to-eduka-orange text-white px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 transform hover:scale-110 active:scale-95 hover:shadow-md"
-                onClick={openServiceForm}
-              >
-                Service
-              </button>
+            {/* Right Section - Auth & Mobile Menu */}
+            <div className="flex items-center gap-4">
+              {/* Auth Status - Hidden on mobile, shown on larger screens */}
+              <div className="hidden md:block">
+              </div>
+              
+              {/* Mobile Menu Button */}
               <button
                 onClick={toggleMobileMenu}
-                className={`p-2 text-gray-700 hover:text-eduka-orange hover:bg-gray-100 rounded-lg transition-all duration-300 transform hover:scale-110 active:scale-95 ${
-                  isMobileMenuOpen ? 'rotate-180 bg-gray-100 text-eduka-orange' : ''
+                className={`lg:hidden p-2 text-gray-700 hover:text-eduka-orange hover:bg-gray-100 rounded-lg transition-all duration-300 ${
+                  isMobileMenuOpen ? 'bg-gray-100 text-eduka-orange' : ''
                 }`}
                 aria-label="Toggle mobile menu"
               >
-                <Menu className={`w-6 h-6 transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} />
+                <Menu className="w-6 h-6" />
               </button>
             </div>
           </div>
@@ -176,21 +151,21 @@ export default function Header() {
                   className="text-gray-700 hover:text-eduka-orange font-medium py-2 px-2 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-100"
                   onClick={closeMobileMenu}
                 >
-                  Home
+                  Accueil
                 </a>
                 <a 
                   href="/Services" 
                   className="text-gray-700 hover:text-eduka-orange font-medium py-2 px-2 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-200"
                   onClick={closeMobileMenu}
                 >
-                  Services
+                  Nos services
                 </a>
                 <a 
                   href="/About" 
                   className="text-gray-700 hover:text-eduka-orange font-medium py-2 px-2 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-300"
                   onClick={closeMobileMenu}
                 >
-                  A Propos
+                  À Propos
                 </a>
                 <a 
                   href="/Contact" 

@@ -1,34 +1,47 @@
 'use client';
-import { Phone, Mail, MapPin, Clock, Send, User, MessageCircle, Building, Globe, Facebook, Twitter, Linkedin, Instagram, CheckCircle, ArrowRight } from "lucide-react"
+import { Phone, Mail, MapPin, Clock, Send, User, MessageCircle, Building, Globe, Facebook, Linkedin, Instagram, CheckCircle, ArrowRight } from "lucide-react"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { serviceRequestsAPI } from "../firebaseService"
+
+// Custom X (Twitter) Icon Component
+const XIcon = ({ className }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
 // Contact information data
 const contactInfo = [
   {
     icon: Phone,
     title: "Téléphone",
-    details: ["+237 671 178 892", "+237 695 123 456"],
+    details: ["+237 657765185", "+237 655571011"],
     description: "Appelez-nous à tout moment"
   },
   {
     icon: Mail,
     title: "Email",
-    details: ["contact@softfs.com", "info@softfs.com"],
+    details: ["info@softfsgroup.com", "sidesfankam@gmail.com"],
     description: "Envoyez-nous un message"
   },
   {
     icon: MapPin,
     title: "Adresse",
-    details: ["Douala, Cameroun", "Bonanjo, Rue de la Liberté"],
+    details: ["Logpom Basson, Douala - Cameroun"],
     description: "Venez nous rendre visite"
   },
   {
     icon: Clock,
     title: "Heures d'Ouverture",
-    details: ["Lun - Ven: 8h - 18h", "Sam: 9h - 16h"],
+    details: ["Lun - Ven: 8h - 17h", "Sam: 9h - 14h"],
     description: "Nos heures de bureau"
   }
 ]
@@ -36,21 +49,20 @@ const contactInfo = [
 // Social media links
 const socialLinks = [
   { icon: Facebook, url: "https://www.facebook.com/softfsgroup", name: "Facebook" },
-  { icon: Twitter, url: "https://x.com/soft_fs", name: "Twitter" },
+  { icon: XIcon, url: "https://x.com/soft_fs", name: "X" },
   { icon: Linkedin, url: "https://www.linkedin.com/company/soft-fs-group/", name: "LinkedIn" },
   { icon: Instagram, url: "https://www.instagram.com/softfs_group", name: "Instagram" },
-  { icon: MessageCircle, url: "https://wa.me/237655571011", name: "WhatsApp" }
+  { icon: MessageCircle, url: "https://wa.me/237657765185", name: "WhatsApp" }
 ]
 
 // Services for contact form
 const serviceOptions = [
-  "Développement Web",
-  "Design Graphique", 
-  "Développement d'Applications Mobiles",
-  "Serigraphie & Impression Numérique",
-  "Photographie & Vidéographie",
-  "Réseau Informatique & Support",
-  "Audit des Systèmes d'Information",
+  "Conception et production graphique",
+  "Photographie & Vidéographie", 
+  "Sérigraphie & Impression Numérique",
+  "Développement d'applications Web & Mobile",
+  "Réseau Informatique & Support utilisateur",
+  "Audit des Systèmes d'Information & Fourniture informatique",
   "Autre"
 ]
 
@@ -107,6 +119,7 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -119,10 +132,37 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null) // Clear any previous errors
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      // Validate required fields
+      if (!formData.name.trim() || !formData.email.trim() || !formData.service || !formData.message.trim()) {
+        throw new Error('Veuillez remplir tous les champs requis.')
+      }
+
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(formData.email.trim())) {
+        throw new Error('Veuillez entrer une adresse email valide.')
+      }
+
+      // Prepare the data to be submitted
+      const submissionData = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || null,
+        company: formData.company.trim() || null,
+        service: formData.service,
+        message: formData.message.trim(),
+        source: 'contact_form' // To identify the source of the request
+      }
+
+      // Submit to database using Firebase Firestore
+      const result = await serviceRequestsAPI.create(submissionData)
+      
+      console.log('Contact form submitted successfully:', result)
+      
+      // Show success message and reset form
       setIsSubmitted(true)
       setFormData({
         name: '',
@@ -135,7 +175,19 @@ export default function ContactPage() {
       
       // Reset success message after 5 seconds
       setTimeout(() => setIsSubmitted(false), 5000)
-    }, 2000)
+      
+    } catch (error) {
+      console.error('Error submitting contact form:', error)
+      
+      // Set error message for user
+      setError(error.message || 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer ou nous contacter directement.')
+      
+      // Clear error message after 8 seconds
+      setTimeout(() => setError(null), 8000)
+      
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -148,14 +200,14 @@ export default function ContactPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/images/design.jpg')`,
+            backgroundImage: `url('/images/contact.jpg')`,
           }}
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         />
         
-        <div className="absolute inset-0 bg-blue-900/80" />
+        <div className="absolute inset-0 bg-black/60" />
 
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -186,8 +238,8 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Parlons de Votre Projet{" "}
-              <span className="text-blue-200 block sm:inline">Ensemble</span>
+              Parlons de votre projet{" "}
+              <span className="text-blue-200 block sm:inline">ensemble</span>
             </motion.h1>
 
             <motion.p 
@@ -221,7 +273,7 @@ export default function ContactPage() {
             variants={staggerContainer}
           >
             <motion.div 
-              className="text-blue-600 font-semibold text-xs sm:text-sm mb-3 sm:mb-4 flex items-center justify-center gap-2 flex-wrap"
+              className="text-xl sm:text-2xl md:text-3xl text-blue-600 font-bold text-xs sm:text-sm mb-3 sm:mb-4 flex items-center justify-center gap-2 flex-wrap"
               variants={fadeInUp}
             >
               <motion.div 
@@ -242,11 +294,11 @@ export default function ContactPage() {
             </motion.div>
 
             <motion.h2 
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4"
+              className="font-bold text-gray-800 mb-3 sm:mb-4 px-4"
               variants={fadeInUp}
             >
-              Plusieurs Façons de Nous{" "}
-              <span className="text-blue-600 block sm:inline">Joindre</span>
+              Plusieurs façons de nous{" "}
+              <span className="text-blue-600 block sm:inline">joindre</span>
             </motion.h2>
 
             <motion.p 
@@ -271,10 +323,6 @@ export default function ContactPage() {
                   key={index}
                   className="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl border border-gray-100 group cursor-pointer min-h-[200px] sm:min-h-[220px] flex flex-col justify-between"
                   variants={fadeInUp}
-                  whileHover={{ 
-                    y: -8,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex-1">
@@ -310,7 +358,6 @@ export default function ContactPage() {
                     <motion.div 
                       className="w-8 sm:w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full mx-auto"
                       initial={{ width: 0, opacity: 0 }}
-                      whileHover={{ width: 32, opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     />
                   </div>
@@ -383,6 +430,32 @@ export default function ContactPage() {
                   <div className="flex-1">
                     <h4 className="font-semibold text-green-800 text-sm sm:text-base">Message envoyé avec succès !</h4>
                     <p className="text-green-600 text-xs sm:text-sm">Nous vous contacterons bientôt.</p>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Error Message - Mobile Responsive */}
+              {error && (
+                <motion.div 
+                  className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6 flex items-start sm:items-center gap-3"
+                  initial={{ opacity: 0, scale: 0.8, y: -20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                    className="flex-shrink-0 mt-0.5 sm:mt-0"
+                  >
+                    <svg className="w-5 sm:w-6 h-5 sm:h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </motion.div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-red-800 text-sm sm:text-base">Erreur d'envoi</h4>
+                    <p className="text-red-600 text-xs sm:text-sm">{error}</p>
                   </div>
                 </motion.div>
               )}
@@ -876,7 +949,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <motion.a 
-              href="tel:+237671178892"
+              href="tel:+237657765185"
               className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
               whileHover={{ 
                 scale: 1.05, 
@@ -898,7 +971,7 @@ export default function ContactPage() {
               >
                 <Phone className="w-4 sm:w-5 h-4 sm:h-5" />
               </motion.div>
-              <span className="hidden sm:inline">+237 671 178 892</span>
+              <span className="hidden sm:inline">+237 657765185</span>
               <span className="sm:hidden">Appelez-nous</span>
             </motion.a>
           </motion.div>
@@ -912,7 +985,7 @@ export default function ContactPage() {
           >
             {[
               { number: "24h", label: "Temps de Réponse" },
-              { number: "100+", label: "Projets Réalisés" },
+              { number: "20+", label: "Projets Réalisés" },
               { number: "99%", label: "Clients Satisfaits" }
             ].map((stat, index) => (
               <motion.div 

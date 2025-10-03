@@ -33,78 +33,27 @@ import Footer from "../components/footer"
 const stats = [
   {
     icon: Trophy,
-    number: "200",
+    number: "20",
     label: "Projets Livrés",
     suffix: "+",
   },
   {
     icon: Users,
-    number: "150",
+    number: "15",
     label: "Clients Satisfaits",
     suffix: "+",
   },
   {
     icon: Settings,
-    number: "50",
+    number: "15",
     label: "Stack Technologique",
     suffix: "+",
   },
   {
     icon: Star,
-    number: "10",
+    number: "5",
     label: "Années d'Expérience",
     suffix: "+",
-  },
-]
-
-const teamMembers = [
-  {
-    name: "Sarah Johnson",
-    role: "Ingénieure Logiciel Principal",
-    image: "/images/design.jpg",
-    description: "Développeuse full-stack avec plus de 8 ans d'expérience en React, Node.js et architecture cloud. Sarah dirige notre équipe de développement frontend et a contribué à plus de 100 projets réussis.",
-    specialties: ["React", "Node.js", "AWS", "TypeScript"],
-    social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
-    }
-  },
-  {
-    name: "David Kim",
-    role: "Ingénieur IA/ML",
-    image: "/images/design.jpg",
-    description: "Expert en apprentissage automatique spécialisé dans l'analyse de données et les solutions d'automatisation intelligente.",
-    specialties: ["Python", "TensorFlow", "Machine Learning", "Data Analysis"],
-    social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
-    }
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Designer UI/UX",
-    image: "/images/worker.jpg",
-    description: "Designer créative passionnée par le design centré sur l'utilisateur et la création d'expériences numériques intuitives. Emily transforme les idées complexes en interfaces utilisateur élégantes et fonctionnelles.",
-    specialties: ["Figma", "Adobe XD", "Prototyping", "User Research"],
-    social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
-    }
-  },
-{
-    name: "Michael Chen",
-    role: "Architecte DevOps",
-    image: "/images/programmer.jpg",
-    description: "Spécialiste en infrastructure cloud axé sur les solutions évolutives et les pipelines de déploiement automatisés.",
-    specialties: ["Docker", "Kubernetes", "CI/CD", "Azure"],
-    social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
-    }
   },
 ]
 
@@ -175,6 +124,11 @@ const technologies = [
     icon: Palette,
     technologies: ["Figma", "Adobe XD", "Sketch", "Adobe Creative Suite", "Prototyping", "UI/UX"]
   },
+  {
+    category: "Réseau",
+    icon: Globe,
+    technologies: []
+  },
 ]
 
 // Animation variants
@@ -225,14 +179,17 @@ export default function AboutPage() {
         transition={{ duration: 0.8 }}
       >
         {/* Background Image */}
-        <div
+        <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('/images/design.jpg')`,
           }}
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
         />
         
-        <div className="absolute inset-0 bg-blue-900/70" />
+        <div className="absolute inset-0 bg-black/60" />
 
         <div className="container mx-auto relative z-10 w-full">
           <motion.div 
@@ -268,7 +225,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Votre Partenaire de Confiance en
+              Votre partenaire de confiance en
               <br className="hidden sm:block" />
               <span className="sm:hidden"> </span>
               <motion.span 
@@ -277,8 +234,8 @@ export default function AboutPage() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 1 }}
               >
-                Transformation
-              </motion.span> Numérique
+                transformation
+              </motion.span> numérique
             </motion.h1>
 
             <motion.p 
@@ -287,7 +244,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              Depuis plus de 10 ans, nous accompagnons les entreprises dans leur évolution technologique 
+              Depuis plus de 5 ans, nous accompagnons les entreprises dans leur évolution technologique 
               avec des solutions innovantes, une expertise reconnue et un engagement sans faille envers l'excellence.
             </motion.p>
 
@@ -329,20 +286,16 @@ export default function AboutPage() {
                   viewport={{ once: true }}
                 >
                   <motion.img
-                    src="/images/design.jpg"
-                    alt="Équipe de conception"
+                    src="/images/web-development.jpg"
+                    alt="Développement web"
                     className="rounded-lg w-full h-32 sm:h-40 lg:h-48 object-cover shadow-lg"
                     variants={fadeInUp}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
                   />
                   <motion.img
-                    src="/images/worker.jpg"
-                    alt="Développement en action"
+                    src="/images/mobile-development.jpg"
+                    alt="Développement mobile"
                     className="rounded-lg w-full h-24 sm:h-28 lg:h-36 object-cover shadow-lg"
                     variants={fadeInUp}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
                   />
                 </motion.div>
                 <motion.div 
@@ -353,11 +306,9 @@ export default function AboutPage() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
                   <motion.img
-                    src="/images/programmer.jpg"
-                    alt="Programmation avancée"
+                    src="/images/graphic-design.jpg"
+                    alt="Design graphique"
                     className="rounded-lg w-full h-48 sm:h-56 lg:h-72 object-cover shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
                   />
                 </motion.div>
               </div>
@@ -369,28 +320,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                whileHover={{ scale: 1.05 }}
               >
-                <div className="text-center">
-                  <motion.div 
-                    className="text-xl sm:text-2xl lg:text-3xl font-bold"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                  >
-                    200+
-                  </motion.div>
-                  <motion.div 
-                    className="text-xs sm:text-sm"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.7 }}
-                  >
-                    Projets Réussis
-                  </motion.div>
-                </div>
               </motion.div>
             </motion.div>
 
@@ -403,7 +333,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.div 
-                className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center gap-2 flex-wrap justify-center lg:justify-start"
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-sm sm:text-base mb-4 flex items-center gap-2 flex-wrap justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -420,15 +350,15 @@ export default function AboutPage() {
               </motion.div>
 
               <motion.h2 
-                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 text-center lg:text-left leading-tight"
+                className="font-bold text-gray-800 mb-4 sm:mb-6 text-center lg:text-left leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Une Passion pour la 
+                Une passion pour la 
                 <br className="hidden sm:block" />
-                <span className="text-eduka-blue">Technologie</span> Depuis 2014
+                <span className="text-eduka-blue">technologie</span> depuis 2020
               </motion.h2>
 
               <motion.p 
@@ -438,7 +368,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Fondée à Douala en 2014, Soft FS est née de la vision de démocratiser l'accès aux technologies 
+                Fondée à Douala en 2020, Soft FS est née de la vision de démocratiser l'accès aux technologies 
                 de pointe pour les entreprises africaines. Nous avons commencé avec une équipe de 3 développeurs 
                 passionnés et avons grandi pour devenir un acteur incontournable du secteur technologique.
               </motion.p>
@@ -451,7 +381,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
                 Aujourd'hui, nous sommes fiers de compter plus de 30 collaborateurs talentueux et d'avoir accompagné 
-                plus de 150 entreprises dans leur transformation numérique. Notre expertise couvre tous les aspects 
+                plus de 15 entreprises dans leur transformation numérique. Notre expertise couvre tous les aspects 
                 du développement logiciel, du design à l'infrastructure cloud.
               </motion.p>
 
@@ -466,8 +396,6 @@ export default function AboutPage() {
                 <motion.div 
                   className="bg-gray-50 rounded-lg p-3 sm:p-4"
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
                 >
                   <h4 className="font-bold text-gray-800 text-sm sm:text-base mb-2 flex items-center gap-2 justify-center lg:justify-start">
                     <Target className="w-4 sm:w-5 h-4 sm:h-5 text-eduka-blue flex-shrink-0" />
@@ -482,8 +410,6 @@ export default function AboutPage() {
                 <motion.div 
                   className="bg-gray-50 rounded-lg p-3 sm:p-4"
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
                 >
                   <h4 className="font-bold text-gray-800 text-sm sm:text-base mb-2 flex items-center gap-2 justify-center lg:justify-start">
                     <Eye className="w-4 sm:w-5 h-4 sm:h-5 text-eduka-blue flex-shrink-0" />
@@ -521,7 +447,7 @@ export default function AboutPage() {
                   </div>
                   <div className="text-center lg:text-left">
                     <div className="text-xs sm:text-sm text-gray-600">Appelez-nous maintenant</div>
-                    <div className="font-bold text-gray-800 text-sm sm:text-base">+237 671 178 892</div>
+                    <div className="font-bold text-gray-800 text-sm sm:text-base">+237 657765185</div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -542,7 +468,7 @@ export default function AboutPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/images/web-development.jpg')`,
+            backgroundImage: `url('/images/programmer.jpg')`,
           }}
           initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
@@ -568,7 +494,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Des Chiffres qui Parlent de Notre <span className="text-eduka-blue">Excellence</span>
+              Des chiffres qui parlent de notre <span className="text-eduka-blue">excellence</span>
             </motion.h2>
             <motion.p 
               className="text-gray-200 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
@@ -649,7 +575,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <motion.div 
-              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -673,13 +599,13 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              className="font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Rencontrez le <span className="text-eduka-blue">Visionnaire</span> derrière Soft FS
+              Rencontrez le <span className="text-eduka-blue">visionnaire</span> derrière Soft FS
             </motion.h2>
 
             <motion.p 
@@ -707,7 +633,7 @@ export default function AboutPage() {
                 <motion.img
                   src="/images/promoteur.jpg"
                   alt="Fondateur de Soft FS"
-                  className="rounded-full w-80 h-80 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px] object-cover shadow-2xl"
+                  className="rounded-full w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-cover shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 />
@@ -821,7 +747,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <motion.div 
-              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -845,13 +771,13 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              className="font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Les Valeurs qui Nous <span className="text-eduka-blue">Définissent</span>
+              Les valeurs qui nous <span className="text-eduka-blue">définissent</span>
             </motion.h2>
 
             <motion.p 
@@ -950,7 +876,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <motion.div 
-              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -974,13 +900,13 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              className="font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Technologies de <span className="text-eduka-blue">Pointe</span>
+              Technologies de <span className="text-eduka-blue">pointe</span>
             </motion.h2>
 
             <motion.p 
@@ -1062,198 +988,6 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </motion.section>
-
-      {/* Our Team Section */}
-      <motion.section 
-        className="py-12 sm:py-16 lg:py-20 px-4 bg-gray-50"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="container mx-auto">
-          <motion.div 
-            className="text-center mb-12 sm:mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.div 
-              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <motion.div 
-                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
-                initial={{ width: 0 }}
-                whileInView={{ width: "1.5rem" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              />
-              <span>NOTRE ÉQUIPE</span>
-              <motion.div 
-                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
-                initial={{ width: 0 }}
-                whileInView={{ width: "1.5rem" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              />
-            </motion.div>
-
-            <motion.h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              Rencontrez Notre Équipe <span className="text-eduka-blue">d'Experts</span>
-            </motion.h2>
-
-            <motion.p 
-              className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Notre équipe diversifiée de professionnels passionnés rassemble des décennies d'expérience 
-              en technologie, design et innovation pour livrer des résultats exceptionnels.
-            </motion.p>
-          </motion.div>
-
-          <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
-                variants={fadeInUp}
-                whileHover={{ 
-                  scale: 1.02,
-                  y: -8,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <div className="relative overflow-hidden">
-                  <motion.img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
-                  />
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                  />
-                  
-                  {/* Social Links */}
-                  <motion.div 
-                    className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 sm:gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileHover={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <motion.a 
-                      href={member.social.github} 
-                      className="w-7 sm:w-8 h-7 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors"
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Github className="w-3 sm:w-4 h-3 sm:h-4" />
-                    </motion.a>
-                    <motion.a 
-                      href={member.social.linkedin} 
-                      className="w-7 sm:w-8 h-7 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors"
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Linkedin className="w-3 sm:w-4 h-3 sm:h-4" />
-                    </motion.a>
-                    <motion.a 
-                      href={member.social.twitter} 
-                      className="w-7 sm:w-8 h-7 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors"
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Twitter className="w-3 sm:w-4 h-3 sm:h-4" />
-                    </motion.a>
-                  </motion.div>
-                </div>
-
-                <motion.div 
-                  className="p-4 sm:p-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-                >
-                  <motion.h3 
-                    className="text-lg sm:text-xl font-bold text-gray-800 mb-1 leading-tight"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                  >
-                    {member.name}
-                  </motion.h3>
-                  <motion.p 
-                    className="text-eduka-blue font-semibold text-sm sm:text-base mb-3 leading-tight"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.4 }}
-                  >
-                    {member.role}
-                  </motion.p>
-                  <motion.p 
-                    className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
-                  >
-                    {member.description}
-                  </motion.p>
-                  
-                  {/* Specialties */}
-                  <motion.div 
-                    className="flex flex-wrap gap-1"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 + 0.6 }}
-                  >
-                    {member.specialties.map((specialty, specIndex) => (
-                      <motion.span
-                        key={specIndex}
-                        className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs whitespace-nowrap"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: specIndex * 0.05 + index * 0.1 + 0.7 }}
-                        whileHover={{ scale: 1.1, backgroundColor: "#3B4D8F", color: "#FFFFFF" }}
-                      >
-                        {specialty}
-                      </motion.span>
-                    ))}
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
       
       {/* Why Choose Us Section */}
       <motion.section 
@@ -1272,7 +1006,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <motion.div 
-              className="text-eduka-blue font-semibold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-sm sm:text-base mb-4 flex items-center justify-center gap-2 flex-wrap px-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1296,13 +1030,13 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
+              className="font-bold text-gray-800 mb-3 sm:mb-4 px-4 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Pourquoi <span className="text-eduka-blue">Soft FS</span> est Votre Meilleur Choix
+              Pourquoi <span className="text-eduka-blue">Soft FS</span> est votre meilleur choix
             </motion.h2>
 
             <motion.p 
@@ -1422,6 +1156,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
                 <motion.button 
+                  onClick={() => router.push('/Contact')}
                   className="bg-white text-blue-700 hover:bg-gray-100 px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold transition-colors whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

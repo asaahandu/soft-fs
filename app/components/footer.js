@@ -1,4 +1,18 @@
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, ExternalLink } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram, ExternalLink } from 'lucide-react'
+
+// Custom X (Twitter) Icon Component
+const XIcon = ({ size, className }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
 export default function Footer() {
   return (
@@ -24,8 +38,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xs">
-              Fournir des solutions technologiques innovantes pour les défis de demain. 
-              Votre partenaire de confiance en transformation numérique et développement logiciel.
+              Des solutions informatique qui boostent votre reussite.
             </p>
             <div className="flex space-x-4 pt-2">
               <a 
@@ -47,7 +60,7 @@ export default function Footer() {
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-200 hover:scale-110 transform"
                 aria-label="X (Twitter)"
               >
-                <Twitter size={20} />
+                <XIcon size={20} />
               </a>
               <a 
                 href="https://www.linkedin.com/company/soft-fs-group/" 
@@ -71,7 +84,7 @@ export default function Footer() {
                     href="/" 
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Home</span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Accueil</span>
                   </a>
                 </li>
                 <li>
@@ -79,7 +92,7 @@ export default function Footer() {
                     href="/About" 
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">About Us</span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">À Propos</span>
                   </a>
                 </li>
                 <li>
@@ -87,7 +100,7 @@ export default function Footer() {
                     href="/Services" 
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Services</span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Nos services</span>
                   </a>
                 </li>
                 <li>
@@ -105,7 +118,7 @@ export default function Footer() {
           {/* Services */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white border-b border-gray-700 pb-2 mb-4">
-              Our Services
+              Nos services
             </h3>
             <nav>
               <ul className="space-y-3">
@@ -114,7 +127,7 @@ export default function Footer() {
                     href="/Services" 
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Software Development</span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Conception et production graphique</span>
                   </a>
                 </li>
                 <li>
@@ -122,7 +135,7 @@ export default function Footer() {
                     href="/Services" 
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Web Applications</span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Photographie et Vidéographie</span>
                   </a>
                 </li>
                 <li>
@@ -130,7 +143,7 @@ export default function Footer() {
                     href="/Services" 
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Mobile Development</span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Sérigraphie et Impression Numérique</span>
                   </a>
                 </li>
                 <li>
@@ -138,7 +151,7 @@ export default function Footer() {
                     href="/Services" 
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Cloud Solutions</span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Développement d'applications Web et Mobile</span>
                   </a>
                 </li>
                 <li>
@@ -146,7 +159,15 @@ export default function Footer() {
                     href="/Services" 
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">IT Consulting</span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Réseau informatique et support utilisateur</span>
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/Services" 
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base flex items-center group"
+                  >
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Audit des systèmes d'information & Fourniture informatique</span>
                   </a>
                 </li>
               </ul>
@@ -164,27 +185,27 @@ export default function Footer() {
                 className="flex items-center gap-3 text-gray-300 hover:text-blue-400 transition-colors duration-200 group"
               >
                 <Mail size={18} className="text-blue-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm sm:text-base break-all">contact@softfs.com</span>
+                <span className="text-sm sm:text-base break-all">info@softfsgroup.com</span>
               </a>
               <a 
                 href="tel:+237671178892"
                 className="flex items-center gap-3 text-gray-300 hover:text-blue-400 transition-colors duration-200 group"
               >
                 <Phone size={18} className="text-blue-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm sm:text-base">+237 671178892</span>
+                <span className="text-sm sm:text-base">+237 655571011</span>
               </a>
               <div className="flex items-start gap-3 text-gray-300">
                 <MapPin size={18} className="text-blue-400 flex-shrink-0 mt-0.5" />
                 <span className="text-sm sm:text-base">Douala, Cameroon</span>
               </div>
               <a 
-                href="https://www.softfs.com" 
+                href="https://www.softfsgroup.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-blue-400 hover:text-blue-300 transition-colors duration-200 group mt-6"
               >
                 <ExternalLink size={16} className="flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm sm:text-base">www.softfs.com</span>
+                <span className="text-sm sm:text-base">www.softfsgroup.com</span>
               </a>
             </div>
           </div>
@@ -196,30 +217,8 @@ export default function Footer() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <p className="text-gray-400 text-sm order-2 sm:order-1">
-              © 2025 Soft FS. All rights reserved.
+              © 2025 soft fs.
             </p>
-            <nav className="order-1 sm:order-2">
-              <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6 text-sm">
-                <a 
-                  href="#" 
-                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 whitespace-nowrap"
-                >
-                  Privacy Policy
-                </a>
-                <a 
-                  href="#" 
-                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 whitespace-nowrap"
-                >
-                  Terms of Service
-                </a>
-                <a 
-                  href="#" 
-                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 whitespace-nowrap"
-                >
-                  Cookie Policy
-                </a>
-              </div>
-            </nav>
           </div>
         </div>
       </div>

@@ -1,7 +1,20 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { authService } from '../../lib/auth';
+import { serviceRequestsAPI } from '../../lib/firestore';
+
+// Create context for admin data
+const AdminContext = createContext();
+
+export const useAdminContext = () => {
+  const context = useContext(AdminContext);
+  if (!context) {
+    throw new Error('useAdminContext must be used within AdminLayout');
+  }
+  return context;
+};
 import { 
   BarChart3, 
   Users, 
@@ -47,7 +60,105 @@ const sidebarNavigation = [
 export default function AdminLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({
+    pendingRequests: 0,
+    totalRequests: 0,
+    completedRequests: 0,
+    loading: true,
+    error: null,
+    lastUpdated: null
+  });
+  const [notification, setNotification] = useState(null);
   const pathname = usePathname();
+  const router = useRouter();
+
+  // Authentication check
+  useEffect(() => {
+    const unsubscribe = authService.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        // Load statistics when user is authenticated
+        loadStatistics();
+      } else {
+        router.push('/login');
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []); // Remove router dependency to avoid re-renders
+
+  // Load statistics from database
+  const loadStatistics = async () => {
+    try {
+      setStats(prev => ({ ...prev, loading: true, error: null }));
+      
+      // Fetch all service requests
+      const allRequests = await serviceRequestsAPI.getAll();
+      
+      // Calculate statistics
+      const pendingRequests = allRequests.filter(request => request.status === 'pending').length;
+      const completedRequests = allRequests.filter(request => request.status === 'completed').length;
+      const inProgressRequests = allRequests.filter(request => request.status === 'in-progress').length;
+      const totalRequests = allRequests.length;
+      
+      setStats({
+        pendingRequests,
+        totalRequests,
+        completedRequests,
+        inProgressRequests,
+        loading: false,
+        error: null,
+        lastUpdated: new Date()
+      });
+      
+      // Show success notification
+      setNotification({
+        type: 'success',
+        message: 'Statistiques mises à jour'
+      });
+      
+      // Auto-hide notification after 3 seconds
+      setTimeout(() => setNotification(null), 3000);
+    } catch (error) {
+      console.error('Error loading statistics:', error);
+      setStats(prev => ({ 
+        ...prev, 
+        loading: false, 
+        error: 'Erreur lors du chargement des statistiques' 
+      }));
+    }
+  };
+
+  // Close sidebar and search on escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setSidebarOpen(false);
+        setSearchOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  // Close sidebar on route change
+  useEffect(() => {
+    setSidebarOpen(false);
+    setSearchOpen(false);
+  }, [pathname]);
+
+  const handleLogout = async () => {
+    try {
+      await authService.signOut();
+      router.push('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   const isActive = (href) => {
     if (href === '/admin') {
@@ -72,27 +183,54 @@ export default function AdminLayout({ children }) {
     setSearchOpen(false); // Also close search when navigating
   };
 
-  // Close sidebar and search on escape key
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        setSidebarOpen(false);
-        setSearchOpen(false);
-      }
-    };
+  // Show loading spinner while checking auth
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Vérification de l'authentification...</p>
+        </div>
+      </div>
+    );
+  }
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, []);
-
-  // Close sidebar on route change
-  useEffect(() => {
-    setSidebarOpen(false);
-    setSearchOpen(false);
-  }, [pathname]);
+  // Don't render if no user
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex relative">
+      {/* Notification */}
+      {notification && (
+        <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-2 duration-300">
+          <div className={`
+            px-4 py-3 rounded-lg shadow-lg border flex items-center gap-2 max-w-sm
+            ${notification.type === 'success' 
+              ? 'bg-green-50 border-green-200 text-green-700' 
+              : 'bg-red-50 border-red-200 text-red-700'
+            }
+          `}>
+            {notification.type === 'success' ? (
+              <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+            ) : (
+              <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            )}
+            <span className="text-sm font-medium">{notification.message}</span>
+            <button
+              onClick={() => setNotification(null)}
+              className="ml-2 p-1 hover:bg-black/10 rounded transition-colors"
+            >
+              <X className="w-3 h-3" />
+            </button>
+          </div>
+        </div>
+      )}
       {/* Sidebar Overlay (Mobile) */}
       {sidebarOpen && (
         <div 
@@ -128,11 +266,11 @@ export default function AdminLayout({ children }) {
         <div className="p-4 sm:p-6 border-b border-gray-100">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base flex-shrink-0">
-              A
+              {authService.getDisplayName(user).charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 truncate">Administrateur</p>
-              <p className="text-xs text-gray-500 truncate">admin@soft-fs.com</p>
+              <p className="text-sm font-semibold text-gray-900 truncate">{authService.getDisplayName(user)}</p>
+              <p className="text-xs text-gray-500 truncate">{user.email}</p>
             </div>
           </div>
         </div>
@@ -183,17 +321,75 @@ export default function AdminLayout({ children }) {
         {/* Quick Stats */}
         <div className="p-3 sm:p-4 border-t border-gray-100">
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4">
-            <h4 className="text-xs sm:text-sm font-semibold text-gray-900 mb-2 sm:mb-3">Statistiques Rapides</h4>
-            <div className="space-y-2 text-xs">
-              <div className="flex items-center justify-between">
-                <span className="text-gray-600 truncate">Demandes en attente</span>
-                <span className="font-semibold text-yellow-600 ml-2">23</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-600 truncate">Projets actifs</span>
-                <span className="font-semibold text-blue-600 ml-2">12</span>
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
+              <h4 className="text-xs sm:text-sm font-semibold text-gray-900">Statistiques Rapides</h4>
+              <div className="flex items-center gap-2">
+                {stats.loading && (
+                  <div className="w-3 h-3 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                )}
+                <button
+                  onClick={loadStatistics}
+                  disabled={stats.loading}
+                  className="p-1 text-gray-400 hover:text-gray-600 rounded transition-colors disabled:opacity-50"
+                  aria-label="Actualiser les statistiques"
+                  title="Actualiser"
+                >
+                  <svg className={`w-3 h-3 ${stats.loading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </button>
               </div>
             </div>
+            <div className="space-y-2 text-xs">
+              {stats.error ? (
+                <div className="text-red-600 text-center py-2">
+                  <p>{stats.error}</p>
+                  <button
+                    onClick={loadStatistics}
+                    className="mt-1 text-blue-600 hover:text-blue-700 underline"
+                  >
+                    Réessayer
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-600 truncate">Demandes en attente</span>
+                    <span className="font-semibold text-yellow-600 ml-2">
+                      {stats.loading ? '...' : stats.pendingRequests}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-600 truncate">En cours</span>
+                    <span className="font-semibold text-orange-600 ml-2">
+                      {stats.loading ? '...' : (stats.inProgressRequests || 0)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-600 truncate">Demandes traitées</span>
+                    <span className="font-semibold text-green-600 ml-2">
+                      {stats.loading ? '...' : stats.completedRequests}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-600 truncate">Total demandes</span>
+                    <span className="font-semibold text-blue-600 ml-2">
+                      {stats.loading ? '...' : stats.totalRequests}
+                    </span>
+                  </div>
+                </>
+              )}
+            </div>
+            {!stats.loading && stats.lastUpdated && (
+              <div className="mt-3 pt-2 border-t border-gray-200">
+                <div className="text-xs text-gray-500">
+                  Mis à jour: {stats.lastUpdated.toLocaleTimeString('fr-FR', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -210,6 +406,7 @@ export default function AdminLayout({ children }) {
             <span className="truncate">Retour au site</span>
           </Link>
           <button 
+            onClick={handleLogout}
             className="w-full flex items-center gap-3 px-3 sm:px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg sm:rounded-xl transition-colors text-sm font-medium group touch-manipulation"
             aria-label="Se déconnecter"
           >
@@ -250,10 +447,10 @@ export default function AdminLayout({ children }) {
               {/* User Menu */}
               <div className="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4 border-l border-gray-200">
                 <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold text-xs sm:text-sm flex-shrink-0">
-                  A
+                  {authService.getDisplayName(user).charAt(0).toUpperCase()}
                 </div>
                 <div className="hidden lg:block">
-                  <p className="text-sm font-medium text-gray-900">Admin</p>
+                  <p className="text-sm font-medium text-gray-900">{authService.getDisplayName(user)}</p>
                   <p className="text-xs text-gray-500">En ligne</p>
                 </div>
               </div>
@@ -280,7 +477,18 @@ export default function AdminLayout({ children }) {
         <section className="flex-1 overflow-auto bg-gray-50">
           <div className="p-3 sm:p-4 lg:p-6 max-w-7xl mx-auto">
             <div className="w-full">
-              {children}
+              <AdminContext.Provider value={{ 
+                stats, 
+                loadStatistics,
+                user,
+                isLoading: loading,
+                showNotification: (type, message) => {
+                  setNotification({ type, message });
+                  setTimeout(() => setNotification(null), 3000);
+                }
+              }}>
+                {children}
+              </AdminContext.Provider>
             </div>
           </div>
         </section>

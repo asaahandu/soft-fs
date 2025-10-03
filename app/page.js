@@ -5,30 +5,31 @@ import Footer from "./components/footer"
 import { useState, useEffect } from "react"
 import { motion, useInView, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
+import { useRouter } from "next/navigation"
 
 const features = [
   {
     number: "01",
     icon: Cloud,
-    title: "Nos Services",
+    title: "Nos services",
     description: "Naviguez sur le site et consultez les services que nous offrons",
   },
   {
     number: "02",
     icon: Cpu,
-    title: "Sélectionner un Service",
+    title: "Sélectionner un service",
     description: "Choisissez le service qui correspond à vos besoins",
   },
   {
     number: "03",
     icon: Smartphone,
-    title: "Postuler pour un Service",
+    title: "Postuler pour un service",
     description: "Postulez facilement en ligne pour le service dont vous avez besoin",
   },
   {
     number: "04",
     icon: Settings,
-    title: "Nous Contacter",
+    title: "Nous contacter",
     description: "N'hésitez pas à nous contacter en cas de problème",
   },
 ]
@@ -36,25 +37,25 @@ const features = [
 const stats = [
   {
     icon: Trophy,
-    number: "200",
+    number: "20",
     label: "Projets Livrés",
     suffix: "+",
   },
   {
     icon: Users,
-    number: "150",
+    number: "15",
     label: "Clients Satisfaits",
     suffix: "+",
   },
   {
     icon: Settings,
-    number: "50",
+    number: "15",
     label: "Stack Technologique",
     suffix: "+",
   },
   {
     icon: Star,
-    number: "10",
+    number: "5",
     label: "Années d'Expérience",
     suffix: "+",
   },
@@ -83,53 +84,6 @@ const services = [
   },
 ]
 
-const teamMembers = [
-  {
-    name: "Sarah Johnson",
-    role: "Ingénieure Logiciel Principal",
-    image: "/images/design.jpg",
-    description: "Développeuse full-stack avec plus de 8 ans d'expérience en React, Node.js et architecture cloud.",
-    social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
-    }
-  },
-  {
-    name: "Michael Chen",
-    role: "Architecte DevOps",
-    image: "/images/programmer.jpg",
-    description: "Spécialiste en infrastructure cloud axé sur les solutions évolutives et les pipelines de déploiement automatisés.",
-    social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
-    }
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Designer UI/UX",
-    image: "/images/worker.jpg",
-    description: "Designer créative passionnée par le design centré sur l'utilisateur et la création d'expériences numériques intuitives.",
-    social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
-    }
-  },
-  {
-    name: "David Kim",
-    role: "Ingénieur IA/ML",
-    image: "/images/design.jpg",
-    description: "Expert en apprentissage automatique spécialisé dans l'analyse de données et les solutions d'automatisation intelligente.",
-    social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
-    }
-  }
-]
-
 const whyChooseUs = [
   {
     icon: Shield,
@@ -143,7 +97,7 @@ const whyChooseUs = [
   },
   {
     icon: Heart,
-    title: "Centré sur le Client",
+    title: "Centré sur le client",
     description: "Nous priorisons vos objectifs commerciaux et fournissons des solutions personnalisées qui génèrent des résultats mesurables."
   },
   {
@@ -209,6 +163,7 @@ const slideIn = {
 }
 
 export default function HomePage() {
+  const router = useRouter()
   const [currentSlide, setCurrentSlide] = useState(0)
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -266,7 +221,7 @@ export default function HomePage() {
           ))}
         </motion.div>
         
-        <div className="absolute inset-0 bg-blue-900/70" />
+        <div className="absolute inset-0 bg-black/60" />
 
         {/* Slideshow Navigation - Hidden on small screens */}
         <motion.div 
@@ -310,7 +265,6 @@ export default function HomePage() {
                 index === currentSlide ? 'bg-white' : 'bg-white/50'
               }`}
               aria-label={`Go to slide ${index + 1}`}
-              whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.8 }}
             />
           ))}
@@ -339,7 +293,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Construisez Votre
+            Construisez votre
             <br />
             <motion.span 
               className="text-eduka-blue"
@@ -347,8 +301,8 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.5 }}
             >
-              Avenir
-            </motion.span> Numérique
+              avenir
+            </motion.span> numérique
           </motion.h1>
 
           <motion.p 
@@ -372,7 +326,7 @@ export default function HomePage() {
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
             >
-              Demander un Devis
+              Demander un devis
             </motion.button>
           </motion.div>
         </div>
@@ -381,7 +335,7 @@ export default function HomePage() {
       
       {/*Features Section - Overlapping Cards*/}
       <motion.section 
-        className="relative -mt-8 sm:-mt-12 md:-mt-16 z-20 px-4 bg-pattern-chain bg-pattern-subtle"
+        className="relative -mt-8 sm:-mt-12 md:-mt-16 z-20 px-4"
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -407,7 +361,6 @@ export default function HomePage() {
                       animate: { opacity: 1, y: 0, scale: 1 }
                     }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -8, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                   <div className="relative mb-4">
@@ -459,7 +412,7 @@ export default function HomePage() {
       <section className="py-4 sm:py-6 md:py-8 lg:py-16 bg-gray-50"></section>
       {/*About Section*/}
       <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4 bg-pattern-chain content-section"
+        className="py-12 sm:py-16 md:py-20 px-4 content-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -478,71 +431,22 @@ export default function HomePage() {
               className="relative order-2 lg:order-1"
               variants={fadeInLeft}
             >
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="space-y-3 sm:space-y-4">
-                  <motion.img
-                    src="/images/design.jpg"
-                    alt="Designing"
-                    className="rounded-lg w-full h-32 sm:h-40 md:h-48 object-cover"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                  />
-                  <motion.img
-                    src="/images/worker.jpg"
-                    alt="Working"
-                    className="rounded-lg w-full h-24 sm:h-28 md:h-36 object-cover"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    whileHover={{ scale: 1.05 }}
-                  />
-                </div>
-                <div className="pt-4 sm:pt-6 md:pt-8">
-                  <motion.img
-                    src="/images/programmer.jpg"
-                    alt="Programming"
-                    className="rounded-lg w-full h-48 sm:h-56 md:h-72 object-cover"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    whileHover={{ scale: 1.05 }}
-                  />
-                </div>
-              </div>
-
-              {/* Floating Stats Card */}
-              <motion.div 
-                className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-eduka-blue text-white p-3 sm:p-4 rounded-lg shadow-lg"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+              {/* Clean Background Image - Gray and transparent */}
+              <motion.img
+                src="/images/background.png"
+                alt="About Us Background"
+                className="w-2/3 h-auto rounded-lg object-cover mx-auto opacity-70 grayscale"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 0.09, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                whileHover={{ scale: 1.05, rotate: 2 }}
-              >
-                <div className="text-center">
-                  <motion.div 
-                    className="text-xl sm:text-2xl font-bold"
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.6, type: "spring" }}
-                  >
-                    10+
-                  </motion.div>
-                  <div className="text-xs sm:text-sm">Années d'Excellence</div>
-                </div>
-              </motion.div>
+                transition={{ duration: 0.8, delay: 0.1 }}
+              />
             </motion.div>
 
             {/* Content */}
             <motion.div variants={fadeInRight} className="order-1 lg:order-2">
               <motion.div 
-                className="text-eduka-blue font-semibold mb-3 sm:mb-4 flex items-center justify-center lg:justify-start gap-2 text-sm sm:text-base"
+                className="text-gray-800 text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 flex items-center justify-center lg:justify-start gap-2 text-sm sm:text-base"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -559,13 +463,13 @@ export default function HomePage() {
               </motion.div>
 
               <motion.h2 
-                className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 text-center lg:text-left"
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-4 sm:mb-6 text-center lg:text-left"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                Nos Solutions Technologiques
+                Nos solutions technologiques
                 <br />
                 <motion.span 
                   className="text-eduka-blue"
@@ -574,8 +478,8 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  Renforcent
-                </motion.span> Votre Entreprise.
+                  renforcent
+                </motion.span> votre entreprise.
               </motion.h2>
 
               <motion.p 
@@ -626,6 +530,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <motion.button 
+                  onClick={() => router.push('/About')}
                   className="text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition-colors touch-manipulation text-sm sm:text-base" 
                   style={{ backgroundColor: '#A5A6C8' }}
                   onMouseEnter={(e) => e.target.style.backgroundColor = '#9293B8'}
@@ -650,7 +555,7 @@ export default function HomePage() {
                   </motion.div>
                   <div className="text-center sm:text-left">
                     <div className="text-xs sm:text-sm text-gray-600">Appelez à tout moment</div>
-                    <div className="font-bold text-gray-800 text-sm sm:text-base">+1 (555) 123-TECH</div>
+                    <div className="font-bold text-gray-800 text-sm sm:text-base">+237 657765185</div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -701,7 +606,6 @@ export default function HomePage() {
                     animate: { opacity: 1, y: 0, scale: 1 }
                   }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -10, scale: 1.05 }}
                 >
                   <motion.div 
                     className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-eduka-blue rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4"
@@ -737,7 +641,7 @@ export default function HomePage() {
       </motion.section>
       {/*Services Section*/}
       <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4 bg-gray-50 bg-pattern-chain bg-pattern-subtle content-section"
+        className="py-12 sm:py-16 md:py-20 px-4 bg-gray-50 content-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -753,7 +657,7 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
           >
             <motion.div 
-              className="text-eduka-blue font-semibold mb-3 sm:mb-4 flex items-center justify-center gap-2 text-sm sm:text-base"
+              className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4 flex items-center justify-center gap-2 text-sm sm:text-base"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -777,20 +681,20 @@ export default function HomePage() {
             </motion.div>
 
             <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4"
+              className="font-bold text-gray-800 mb-3 sm:mb-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Explorez Nos Services <motion.span 
+              Explorez nos services <motion.span 
                 className="text-eduka-blue"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                Technologiques
+                technologiques
               </motion.span>
             </motion.h2>
 
@@ -823,15 +727,12 @@ export default function HomePage() {
                   animate: { opacity: 1, y: 0, scale: 1 }
                 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
               >
                 <div className="relative overflow-hidden">
                   <motion.img 
                     src={service.image || "/placeholder.svg"} 
                     alt={service.title} 
                     className="w-full h-40 sm:h-44 md:h-48 object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
                   />
                   <motion.div 
                     className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-eduka-blue text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold"
@@ -876,6 +777,7 @@ export default function HomePage() {
                   </motion.div>
 
                   <motion.button 
+                    onClick={() => router.push(`/Services`)}
                     className="w-full text-white py-2 sm:py-2.5 px-4 rounded transition-colors text-sm sm:text-base touch-manipulation" 
                     style={{ backgroundColor: '#3B4D8F' }}
                     onMouseEnter={(e) => e.target.style.backgroundColor = '#9293B8'}
@@ -896,181 +798,10 @@ export default function HomePage() {
           </motion.div>
         </div>
       </motion.section>
-
-      {/* Our Team Section */}
-      <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4 bg-white bg-pattern-chain content-section"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="container mx-auto">
-          {/* Header */}
-          <motion.div 
-            className="text-center mb-10 sm:mb-12 md:mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.div 
-              className="text-eduka-blue font-semibold mb-3 sm:mb-4 flex items-center justify-center gap-2 text-sm sm:text-base"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.div 
-                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
-                initial={{ width: 0 }}
-                whileInView={{ width: 24 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              />
-              NOTRE ÉQUIPE
-              <motion.div 
-                className="w-6 sm:w-8 h-0.5 bg-eduka-blue"
-                initial={{ width: 0 }}
-                whileInView={{ width: 24 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              />
-            </motion.div>
-
-            <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              Rencontrez Notre Équipe <motion.span 
-                className="text-eduka-blue"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                d'Experts
-              </motion.span>
-            </motion.h2>
-
-            <motion.p 
-              className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Notre équipe diversifiée de professionnels passionnés rassemble des décennies d'expérience en technologie, 
-              design et innovation pour livrer des résultats exceptionnels à nos clients.
-            </motion.p>
-          </motion.div>
-
-          {/* Team Grid */}
-          <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                className="bg-gray-50 rounded-xl overflow-hidden group touch-manipulation"
-                variants={{
-                  initial: { opacity: 0, y: 50, scale: 0.9 },
-                  animate: { opacity: 1, y: 0, scale: 1 }
-                }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
-              >
-                <div className="relative overflow-hidden">
-                  <motion.img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-full h-48 sm:h-56 md:h-64 object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  {/* Social Links */}
-                  <motion.div 
-                    className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 sm:gap-3"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileHover={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <motion.a 
-                      href={member.social.github} 
-                      className="w-7 h-7 sm:w-8 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors touch-manipulation"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                    >
-                      <Github className="w-3 h-3 sm:w-4 sm:h-4" />
-                    </motion.a>
-                    <motion.a 
-                      href={member.social.linkedin} 
-                      className="w-7 h-7 sm:w-8 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors touch-manipulation"
-                      whileHover={{ scale: 1.1, rotate: -5 }}
-                    >
-                      <Linkedin className="w-3 h-3 sm:w-4 sm:h-4" />
-                    </motion.a>
-                    <motion.a 
-                      href={member.social.twitter} 
-                      className="w-7 h-7 sm:w-8 sm:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-eduka-blue transition-colors touch-manipulation"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                    >
-                      <Twitter className="w-3 h-3 sm:w-4 sm:h-4" />
-                    </motion.a>
-                  </motion.div>
-                </div>
-
-                <div className="p-4 sm:p-5 md:p-6">
-                  <motion.h3 
-                    className="text-lg sm:text-xl font-bold text-gray-800 mb-1"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                  >
-                    {member.name}
-                  </motion.h3>
-                  <motion.p 
-                    className="text-eduka-blue font-semibold mb-2 sm:mb-3 text-sm sm:text-base"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    {member.role}
-                  </motion.p>
-                  <motion.p 
-                    className="text-gray-600 text-xs sm:text-sm leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                  >
-                    {member.description}
-                  </motion.p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
       
       {/* Why Choose Us Section */}
       <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 to-white bg-pattern-chain bg-pattern-subtle content-section"
+        className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 to-white content-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -1086,7 +817,7 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
           >
             <motion.div 
-              className="text-eduka-blue font-semibold mb-3 sm:mb-4 flex items-center justify-center gap-2 text-sm sm:text-base"
+              className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4 flex items-center justify-center gap-2 text-sm sm:text-base"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -1110,7 +841,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4"
+              className="font-bold text-gray-800 mb-3 sm:mb-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1124,7 +855,7 @@ export default function HomePage() {
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
                 Soft FS
-              </motion.span> est Votre Meilleur Choix
+              </motion.span> est votre meilleur choix.
             </motion.h2>
 
             <motion.p 
@@ -1158,12 +889,6 @@ export default function HomePage() {
                     animate: { opacity: 1, y: 0, scale: 1 }
                   }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ 
-                    y: -10, 
-                    scale: 1.02, 
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                    rotateY: 5 
-                  }}
                 >
                   <div className="text-center">
                     <motion.div 
@@ -1184,7 +909,6 @@ export default function HomePage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-                      whileHover={{ color: "#3B4D8F" }}
                     >
                       {feature.title}
                     </motion.h3>
@@ -1206,7 +930,6 @@ export default function HomePage() {
                       className="w-8 sm:w-10 md:w-12 h-0.5 sm:h-0.5 md:h-1 rounded-full mx-auto" 
                       style={{ background: 'linear-gradient(to right, #3B4D8F, #A5A6C8)' }}
                       initial={{ opacity: 0, scaleX: 0 }}
-                      whileHover={{ opacity: 1, scaleX: 1 }}
                       transition={{ duration: 0.3 }}
                     ></motion.div>
                   </div>
@@ -1229,7 +952,6 @@ export default function HomePage() {
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              whileHover={{ scale: 1.02, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
             >
               <motion.h3 
                 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4"
@@ -1257,6 +979,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <motion.button 
+                  onClick={() => router.push('/Contact')}
                   className="border-2 border-eduka-blue text-eduka-blue hover:bg-gray-100 hover:text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-base sm:text-lg transition-colors touch-manipulation"
                   whileHover={{ scale: 1.05, backgroundColor: "#3B4D8F", color: "white" }}
                   whileTap={{ scale: 0.95 }}
