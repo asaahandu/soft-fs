@@ -301,7 +301,7 @@ export default function ServicesPage() {
         ref={heroRef}
         initial="hidden"
         animate={heroInView ? "visible" : "hidden"}
-        className="relative bg-gradient-to-r from-black-900/70 to-black-700/70 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center"
+        className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center"
       >
         {/* Background Image */}
         <motion.div
@@ -318,7 +318,7 @@ export default function ServicesPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute inset-0 bg-black/60" 
+          className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-800/60 to-slate-700/40" 
         />
 
         <div className="container mx-auto relative z-10 w-full">
@@ -377,6 +377,7 @@ export default function ServicesPage() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 max-w-lg sm:max-w-none mx-auto"
             >
               <motion.button 
+                onClick={(href) => router.push("/Contact")}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-eduka-blue text-white hover:bg-blue-700 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 transition-colors shadow-lg font-semibold w-full sm:w-auto"
@@ -399,9 +400,12 @@ export default function ServicesPage() {
         ref={servicesRef}
         initial="hidden"
         animate={servicesInView ? "visible" : "hidden"}
-        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-50"
+        className="py-8 sm:py-12 lg:py-16 px-4 sm:px-6 bg-gradient-to-b from-gray-50 via-white to-gray-100/50"
       >
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-6xl relative">
+          {/* Subtle background decoration */}
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-gray-200/20 to-slate-300/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-32 h-32 bg-gradient-to-tr from-gray-300/15 to-slate-200/20 rounded-full blur-2xl" />
           {/* Header */}
           <motion.div 
             variants={staggerChildren}
@@ -452,7 +456,7 @@ export default function ServicesPage() {
           {/* Detailed Services */}
           <motion.div 
             variants={staggerChildren}
-            className="space-y-16 sm:space-y-20 lg:space-y-24"
+            className="space-y-8 sm:space-y-10 lg:space-y-12"
           >
             {servicesData.map((service, index) => {
               const IconComponent = service.icon
@@ -460,7 +464,7 @@ export default function ServicesPage() {
                 <motion.div
                   key={service.id}
                   variants={index % 2 === 0 ? slideInLeft : slideInRight}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center ${
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-center bg-gradient-to-br from-white via-gray-50/50 to-slate-100/30 rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100/50 backdrop-blur-sm ${
                     index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                   }`}
                 >
@@ -481,37 +485,37 @@ export default function ServicesPage() {
                         <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                       </motion.div>
                       <motion.div variants={fadeInUp} className="min-w-0">
-                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 leading-tight">{service.title}</h3>
-                        <p className="text-eduka-blue font-semibold text-sm sm:text-base mt-1">{service.subtitle}</p>
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 leading-tight">{service.title}</h3>
+                        <p className="text-eduka-blue font-semibold text-xs sm:text-sm mt-1">{service.subtitle}</p>
                       </motion.div>
                     </motion.div>
 
                     <motion.p 
                       variants={fadeInUp}
-                      className="text-gray-600 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 leading-relaxed"
+                      className="text-gray-600 text-sm sm:text-base mb-5 sm:mb-6 leading-relaxed"
                     >
-                      {service.fullDescription}
+                      {service.shortDescription}
                     </motion.p>
 
                     {/* Key Features */}
                     <motion.div 
                       variants={fadeInUp}
-                      className="mb-6 sm:mb-8"
+                      className="mb-5 sm:mb-6"
                     >
-                      <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4">Caractéristiques Clés:</h4>
+                      <h4 className="text-sm sm:text-base font-bold text-gray-800 mb-3 sm:mb-4">Caractéristiques Clés:</h4>
                       <motion.div 
                         variants={staggerChildren}
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3"
+                        className="grid grid-cols-1 gap-2.5"
                       >
-                        {service.features.slice(0, 6).map((feature, idx) => (
+                        {service.features.slice(0, 3).map((feature, idx) => (
                           <motion.div 
                             key={idx}
                             variants={fadeIn}
                             whileHover={{ x: 5 }}
                             className="flex items-start gap-3"
                           >
-                            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-600 text-xs sm:text-sm leading-relaxed">{feature}</span>
+                            <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-600 text-xs leading-snug">{feature}</span>
                           </motion.div>
                         ))}
                       </motion.div>
@@ -520,18 +524,18 @@ export default function ServicesPage() {
                     {/* Technologies */}
                     <motion.div 
                       variants={fadeInUp}
-                      className="mb-6 sm:mb-8"
+                      className="mb-5 sm:mb-6"
                     >
-                      <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4">Technologies que Nous Utilisons:</h4>
+                      <h4 className="text-sm sm:text-base font-bold text-gray-800 mb-3 sm:mb-4">Technologies:</h4>
                       <motion.div 
                         variants={staggerChildren}
-                        className="flex flex-wrap gap-2"
+                        className="flex flex-wrap gap-2.5"
                       >
-                        {service.technologies.map((tech, idx) => (
+                        {service.technologies.slice(0, 4).map((tech, idx) => (
                           <motion.span
                             key={idx}
                             variants={scaleIn}
-                            className="bg-white border border-gray-200 text-gray-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover:border-eduka-blue hover:text-eduka-blue transition-colors cursor-pointer"
+                            className="bg-gradient-to-r from-gray-100 to-slate-100 border border-gray-200 text-gray-700 px-2 py-0.5 rounded-full text-xs font-medium hover:border-eduka-blue hover:text-eduka-blue hover:from-blue-50 hover:to-indigo-50 transition-all cursor-pointer shadow-sm"
                           >
                             {tech}
                           </motion.span>
@@ -542,53 +546,53 @@ export default function ServicesPage() {
                     {/* Stats and CTA */}
                     <motion.div 
                       variants={fadeInUp}
-                      className="bg-white rounded-lg p-4 sm:p-6 shadow-md border border-gray-100"
+                      className="bg-gradient-to-r from-gray-50 to-white rounded-lg p-3 sm:p-4 lg:p-5 shadow-lg border border-gray-200/50 backdrop-blur-sm"
                     >
                       <motion.div 
                         variants={staggerChildren}
-                        className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4 sm:mb-6"
+                        className="grid grid-cols-3 gap-2 sm:gap-4"
                       >
                         <motion.div 
                           variants={fadeInUp}
-                          className="text-center"
+                          className="text-center px-1"
                         >
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.2 }}
-                            className="text-xl sm:text-2xl font-bold text-eduka-blue"
+                            className="text-base sm:text-lg lg:text-xl font-bold text-eduka-blue"
                           >
                             {service.rating}.0
                           </motion.div>
-                          <div className="text-xs sm:text-sm text-gray-600">Note</div>
+                          <div className="text-xs sm:text-sm text-gray-600 leading-tight">Note</div>
                         </motion.div>
                         <motion.div 
                           variants={fadeInUp}
-                          className="text-center"
+                          className="text-center px-1 border-x border-gray-200"
                         >
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.2 + 0.1 }}
-                            className="text-xl sm:text-2xl font-bold text-eduka-blue"
+                            className="text-base sm:text-lg lg:text-xl font-bold text-eduka-blue"
                           >
                             {service.clients}+
                           </motion.div>
-                          <div className="text-xs sm:text-sm text-gray-600">Clients</div>
+                          <div className="text-xs sm:text-sm text-gray-600 leading-tight">Clients</div>
                         </motion.div>
                         <motion.div 
                           variants={fadeInUp}
-                          className="text-center"
+                          className="text-center px-1"
                         >
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.2 + 0.2 }}
-                            className="text-xl sm:text-2xl font-bold text-eduka-blue"
+                            className="text-xs sm:text-sm lg:text-base font-bold text-eduka-blue leading-tight"
                           >
                             {service.timeline}
                           </motion.div>
-                          <div className="text-xs sm:text-sm text-gray-600">Délai</div>
+                          <div className="text-xs sm:text-sm text-gray-600 leading-tight">Délai</div>
                         </motion.div>
                       </motion.div>
                     </motion.div>
@@ -597,18 +601,18 @@ export default function ServicesPage() {
                   {/* Image */}
                   <motion.div 
                     variants={index % 2 === 0 ? slideInRight : slideInLeft}
-                    className={`${index % 2 === 1 ? 'lg:col-start-1' : ''} px-4 sm:px-0`}
+                    className={`${index % 2 === 1 ? 'lg:col-start-1' : ''} px-4 sm:px-0 flex items-stretch`}
                   >
                     <motion.div 
                       whileHover={{ y: -10 }}
-                      className="relative lg:h-full"
+                      className="relative w-full flex"
                     >
                       <motion.img
                         src={service.image}
                         alt={service.title}
-                        className="rounded-lg sm:rounded-2xl shadow-2xl w-full h-[320px] sm:h-[320px] lg:h-full object-cover object-center"
+                        className="shadow-xl w-full h-auto sm:h-full sm:min-h-[400px] lg:min-h-[400px] object-contain sm:object-cover object-center"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg sm:rounded-2xl" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 via-gray-600/10 to-transparent" />
                     </motion.div>
                   </motion.div>
                 </motion.div>
@@ -625,9 +629,12 @@ export default function ServicesPage() {
         ref={processRef}
         initial="hidden"
         animate={processInView ? "visible" : "hidden"}
-        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-50"
+        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-200"
       >
-        <div className="container mx-auto">
+        <div className="container mx-auto relative">
+          {/* Background decoration elements */}
+          <div className="absolute top-10 right-10 w-24 h-24 bg-gradient-radial from-gray-300/20 to-transparent rounded-full blur-xl" />
+          <div className="absolute bottom-10 left-10 w-32 h-32 bg-gradient-radial from-slate-400/15 to-transparent rounded-full blur-2xl" />
           <motion.div 
             variants={staggerChildren}
             className="text-center mb-16"
@@ -682,7 +689,7 @@ export default function ServicesPage() {
               <motion.div 
                 key={index} 
                 variants={fadeInUp}
-                className="text-center relative"
+                className="text-center relative bg-gradient-to-b from-white to-gray-50/80 rounded-xl p-6 shadow-sm border border-gray-100/60 hover:shadow-md transition-all duration-300"
               >
                 {/* Connection line */}
                 {index < processSteps.length - 1 && (
@@ -690,7 +697,7 @@ export default function ServicesPage() {
                     initial={{ scaleX: 0 }}
                     animate={processInView ? { scaleX: 1 } : { scaleX: 0 }}
                     transition={{ duration: 0.8, delay: index * 0.2 + 0.5 }}
-                    className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gray-300 transform -translate-y-1/2 z-0 origin-left" 
+                    className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-gray-300 via-slate-400 to-gray-300 transform -translate-y-1/2 z-0 origin-left" 
                   />
                 )}
                 
@@ -742,9 +749,14 @@ export default function ServicesPage() {
         ref={ctaRef}
         initial="hidden"
         animate={ctaInView ? "visible" : "hidden"}
-        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-r from-blue-400 to-blue-700"
+        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-slate-700 via-gray-800 to-eduka-blue relative overflow-hidden"
       >
-        <div className="container mx-auto text-center">
+        {/* Subtle overlay pattern */}
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent" />
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-12" />
+        </div>
+        <div className="container mx-auto text-center relative z-10">
           <motion.h2 
             variants={fadeInUp}
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 px-2"
@@ -794,7 +806,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="text-2xl sm:text-3xl font-bold text-white mb-2"
               >
-                24/7
+                7j/7
               </motion.div>
               <div className="text-blue-100 text-sm sm:text-base">Support Disponible</div>
             </motion.div>

@@ -40,11 +40,11 @@ export default function Header() {
         <div className="container mx-auto">
           {/* Mobile Layout - Compact contact info */}
           <div className="flex justify-between items-center text-xs sm:hidden">
-            <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+            <div className="flex items-center gap-2">
               <MapPin className="w-3 h-3 flex-shrink-0" />
-              <span>Douala</span>
+              <span>Douala, Cameroun</span>
             </div>
-            <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+            <div className="flex items-center gap-2">
               <Phone className="w-3 h-3 flex-shrink-0" />
               <span>+237 657765185</span>
             </div>
@@ -53,16 +53,16 @@ export default function Header() {
           {/* Desktop Layout - Full contact info */}
           <div className="hidden sm:flex justify-between items-center text-sm">
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+              <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 flex-shrink-0" />
-                <span>Douala</span>
+                <span>Douala, Cameroun</span>
               </div>
-              <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+              <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 flex-shrink-0" />
                 <span>info@softfsgroup.com</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-300 cursor-pointer">
+            <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 flex-shrink-0" />
               <span>+237 657765185</span>
             </div>
@@ -86,7 +86,7 @@ export default function Header() {
                 className={`w-auto transition-all duration-500 transform hover:scale-105 ${
                   isScrolled 
                     ? 'h-10 sm:h-12' 
-                    : 'h-12 sm:h-16 md:h-20'
+                    : 'h-14 sm:h-16 md:h-18'
                 }`}
                 width={300}
                 height={100}
@@ -97,25 +97,25 @@ export default function Header() {
             <nav className="hidden lg:flex items-center mr-20 gap-8">
               <a 
                 href="/" 
-                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-orange-50"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 py-2 px-3 rounded-lg"
               >
                 Accueil
               </a>
               <a 
                 href="/Services" 
-                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-orange-50"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 py-2 px-3 rounded-lg"
               >
                 Nos Services
               </a>
               <a 
                 href="/About" 
-                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-orange-50"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 py-2 px-3 rounded-lg"
               >
                 A Propos
               </a>
               <a 
                 href="/Contact" 
-                className="text-gray-700 hover:text-eduka-orange font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-orange-50"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 py-2 px-3 rounded-lg"
               >
                 Contact
               </a>
@@ -130,8 +130,8 @@ export default function Header() {
               {/* Mobile Menu Button */}
               <button
                 onClick={toggleMobileMenu}
-                className={`lg:hidden p-2 text-gray-700 hover:text-eduka-orange hover:bg-gray-100 rounded-lg transition-all duration-300 ${
-                  isMobileMenuOpen ? 'bg-gray-100 text-eduka-orange' : ''
+                className={`lg:hidden p-2 text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-lg transition-all duration-300 ${
+                  isMobileMenuOpen ? 'bg-gray-100 text-blue-600' : ''
                 }`}
                 aria-label="Toggle mobile menu"
               >
@@ -148,28 +148,28 @@ export default function Header() {
               <nav className="flex flex-col space-y-3 pt-4">
                 <a 
                   href="/" 
-                  className="text-gray-700 hover:text-eduka-orange font-medium py-2 px-2 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-100"
+                  className="text-gray-700 hover:text-blue-600 font-medium py-2 px-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-100"
                   onClick={closeMobileMenu}
                 >
                   Accueil
                 </a>
                 <a 
                   href="/Services" 
-                  className="text-gray-700 hover:text-eduka-orange font-medium py-2 px-2 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-200"
+                  className="text-gray-700 hover:text-blue-600 font-medium py-2 px-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-200"
                   onClick={closeMobileMenu}
                 >
                   Nos services
                 </a>
                 <a 
                   href="/About" 
-                  className="text-gray-700 hover:text-eduka-orange font-medium py-2 px-2 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-300"
+                  className="text-gray-700 hover:text-blue-600 font-medium py-2 px-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-300"
                   onClick={closeMobileMenu}
                 >
                   À Propos
                 </a>
                 <a 
                   href="/Contact" 
-                  className="text-gray-700 hover:text-eduka-orange font-medium py-2 px-2 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-400"
+                  className="text-gray-700 hover:text-blue-600 font-medium py-2 px-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:translate-x-2 animate-slideInLeft animation-delay-400"
                   onClick={closeMobileMenu}
                 >
                   Contact

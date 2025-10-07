@@ -26,6 +26,7 @@ import {
   ArrowRight,
   Play
 } from "lucide-react"
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion"
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -127,7 +128,7 @@ const technologies = [
   {
     category: "Réseau",
     icon: Globe,
-    technologies: []
+    technologies: ["Reseau locale", "CCTV", "VPN", "Pare-feu"]
   },
 ]
 
@@ -167,6 +168,8 @@ const scaleInHover = {
 }
 
 export default function AboutPage() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -182,7 +185,7 @@ export default function AboutPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/images/design.jpg')`,
+            backgroundImage: `url('/images/about.jpg')`,
           }}
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -210,7 +213,7 @@ export default function AboutPage() {
                 animate={{ width: "1.5rem" }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               />
-              <span className="text-center">À PROPOS DE SOFT FS</span>
+              <span className="text-center">À PROPOS DE SOFT FS GROUP</span>
               <motion.div 
                 className="w-6 sm:w-8 h-0.5 bg-white"
                 initial={{ width: 0 }}
@@ -277,51 +280,16 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <motion.div 
-                  className="space-y-3 sm:space-y-4"
-                  variants={staggerContainer}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                >
-                  <motion.img
-                    src="/images/web-development.jpg"
-                    alt="Développement web"
-                    className="rounded-lg w-full h-32 sm:h-40 lg:h-48 object-cover shadow-lg"
-                    variants={fadeInUp}
-                  />
-                  <motion.img
-                    src="/images/mobile-development.jpg"
-                    alt="Développement mobile"
-                    className="rounded-lg w-full h-24 sm:h-28 lg:h-36 object-cover shadow-lg"
-                    variants={fadeInUp}
-                  />
-                </motion.div>
-                <motion.div 
-                  className="pt-4 sm:pt-6 lg:pt-8"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <motion.img
-                    src="/images/graphic-design.jpg"
-                    alt="Design graphique"
-                    className="rounded-lg w-full h-48 sm:h-56 lg:h-72 object-cover shadow-lg"
-                  />
-                </motion.div>
-              </div>
-
-              {/* Floating Stats Card - Responsive positioning */}
-              <motion.div 
-                className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-eduka-blue text-white p-3 sm:p-4 lg:p-6 rounded-lg shadow-xl"
+              {/* Clean Background Image - Gray and transparent */}
+              <motion.img
+                src="/images/background.png"
+                alt="Company Background"
+                className="w-2/3 h-auto rounded-lg object-cover mx-auto opacity-70 grayscale"
                 initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                whileInView={{ opacity: 0.09, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-              </motion.div>
+                transition={{ duration: 0.8, delay: 0.1 }}
+              />
             </motion.div>
 
             {/* Content */}
@@ -368,7 +336,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Fondée à Douala en 2020, Soft FS est née de la vision de démocratiser l'accès aux technologies 
+                Fondée à Douala en 2020, Soft FS GROUP est née de la vision de démocratiser l'accès aux technologies 
                 de pointe pour les entreprises africaines. Nous avons commencé avec une équipe de 3 développeurs 
                 passionnés et avons grandi pour devenir un acteur incontournable du secteur technologique.
               </motion.p>
@@ -468,7 +436,7 @@ export default function AboutPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/images/programmer.jpg')`,
+            backgroundImage: `url('/images/chiffres.jpg')`,
           }}
           initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
@@ -605,7 +573,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Rencontrez le <span className="text-eduka-blue">visionnaire</span> derrière Soft FS
+              Rencontrez le <span className="text-eduka-blue">visionnaire</span> derrière Soft FS GROUP
             </motion.h2>
 
             <motion.p 
@@ -615,7 +583,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Découvrez l'histoire et la vision de la personne qui a créé Soft FS avec une passion 
+              Découvrez l'histoire et la vision de la personne qui a créé Soft FS GROUP avec une passion 
               pour l'innovation technologique et l'excellence.
             </motion.p>
           </motion.div>
@@ -654,7 +622,7 @@ export default function AboutPage() {
                     "La technologie doit servir l'humain et créer des opportunités pour tous"
                   </div>
                   <div className="mt-2 text-xs font-semibold">
-                    - Fondateur, Soft FS
+                    - Fondateur, Soft FS GROUP
                   </div>
                 </motion.div>
               </div>
@@ -687,8 +655,8 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <p>
-                  De son vrai nom Fankam Wometcha Sides, le promoteur et gérant du groupe 
-                  Soft FS est un ingénieur camerounais spécialisé en systèmes informatiques et 
+                  De son vrai nom Fankam Wometcha Sides, le fondateur et CEO du groupe 
+                  Soft FS GROUP est un ingénieur camerounais spécialisé en systèmes informatiques et 
                   réseaux, titulaire d’une maîtrise en Management des Systèmes d’Information. 
                 </p>
 
@@ -701,7 +669,7 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  Animé par une vision claire et ambitieuse, il a fondé Soft FS afin de proposer 
+                  Animé par une vision claire et ambitieuse, il a fondé Soft FS GROUPafin de proposer 
                   des services innovants en création digitale et en solutions informatiques de 
                   qualité, avec pour objectif d’optimiser les performances et de créer une 
                   véritable valeur ajoutée pour ses clients et partenaires.
@@ -716,7 +684,8 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <motion.button 
+                <motion.button
+                  onClick={() => { window.open("https://www.linkedin.com/in/steve-sides/", "_blank"); }} 
                   className="bg-eduka-blue hover:bg-eduka-blue-dark text-black px-6 sm:px-8 py-3 rounded-full transition-colors text-sm sm:text-base whitespace-nowrap flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -732,7 +701,7 @@ export default function AboutPage() {
 
       {/* Company Values Section */}
       <motion.section 
-        className="py-12 sm:py-16 lg:py-20 px-4 bg-gray-50"
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-gray-100"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -991,7 +960,7 @@ export default function AboutPage() {
       
       {/* Why Choose Us Section */}
       <motion.section 
-        className="py-12 sm:py-16 lg:py-20 px-4 bg-white"
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-gray-100"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -1036,7 +1005,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Pourquoi <span className="text-eduka-blue">Soft FS</span> est votre meilleur choix
+              Pourquoi <span className="text-eduka-blue">Soft FS GROUP</span> est votre meilleur choix
             </motion.h2>
 
             <motion.p 
@@ -1125,7 +1094,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <motion.div 
-              className="bg-blue-700 rounded-2xl p-6 sm:p-8 shadow-lg text-white max-w-4xl mx-auto"
+              className="bg-blue-500 rounded-2xl p-6 sm:p-8 shadow-lg text-white max-w-4xl mx-auto"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -1136,7 +1105,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Transformer Votre Entreprise avec Soft FS
+                Transformer Votre Entreprise avec Soft FS GROUP
               </motion.h3>
               <motion.p 
                 className="mb-6 max-w-2xl mx-auto opacity-90 text-sm sm:text-base lg:text-lg leading-relaxed"
@@ -1145,7 +1114,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                Rejoignez des centaines de clients satisfaits qui ont choisi Soft FS pour accélérer 
+                Rejoignez des centaines de clients satisfaits qui ont choisi Soft FS GROUPpour accélérer 
                 leur parcours de transformation numérique. Discutons de votre projet aujourd'hui.
               </motion.p>
               <motion.div 

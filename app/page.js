@@ -1,5 +1,5 @@
 'use client';
-import {Play, GraduationCap, Users, BookOpen, DollarSign, CheckCircle, Phone, Trophy, Star, Clock, Cloud, Cpu, Smartphone, Settings, Shield, Zap, Heart, Award, Github, Linkedin, Twitter, ChevronLeft, ChevronRight} from "lucide-react"
+import {Play, GraduationCap, Users, BookOpen, DollarSign, CheckCircle, Phone, Trophy, Star, Clock, Cloud, Cpu, Smartphone, Settings, Shield, Zap, Heart, Award, Medal, Github, Linkedin, Twitter, ChevronLeft, ChevronRight} from "lucide-react"
 import Header from "./components/header"
 import Footer from "./components/footer"
 import { useState, useEffect } from "react"
@@ -63,20 +63,20 @@ const stats = [
 
 const services = [
   {
-    image: "/images/web-development.jpg",
+    image: "/images/developpement.jpg",
     title: "Développement d'applications Web et Mobile",
     rating: 5,
     clients: 25,
     duration: "À votre rythme",
   },
   {
-    image: "/images/graphic-design.jpg",
+    image: "/images/graphisme.jpg",
     title: "Conception et Production graphique",
     clients: 30,
     duration: "Quand vous voulez",
   },
   {
-    image: "/images/mobile-development.jpg",
+    image: "/images/photographie.jpg",
     title: "Photographie et Videographie",
     rating: 5,
     clients: 20,
@@ -114,11 +114,11 @@ const heroImages = [
     alt: "Web Development Solutions"
   },
   {
-    url: "/images/mobile-development.jpg", 
+    url: "/images/slider2.jpg", 
     alt: "Mobile App Development"
   },
   {
-    url: "/images/graphic-design.jpg",
+    url: "/images/slider3.jpg",
     alt: "Creative Design Services"
   }
 ]
@@ -284,7 +284,7 @@ export default function HomePage() {
               animate={{ width: 24 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             />
-            BIENVENUE CHEZ SOFT FS !
+            BIENVENUE CHEZ SOFT FS GROUP !
           </motion.div>
 
           <motion.h1 
@@ -322,7 +322,8 @@ export default function HomePage() {
             transition={{ delay: 0.7, duration: 0.6 }}
           >
             <motion.button 
-              className="border border-white text-white hover:bg-white hover:text-gray-800 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 bg-transparent transition-colors touch-manipulation"
+              onClick={(href) => router.push("/Contact")}
+              className="border border-white text-white hover:bg-blue-700 hover:text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-base sm:text-lg flex items-center justify-center gap-2 bg-transparent transition-colors touch-manipulation"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
             >
@@ -355,7 +356,7 @@ export default function HomePage() {
                 return (
                   <motion.div 
                     key={index} 
-                    className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 p-4 sm:p-5 md:p-6 group border border-gray-100 backdrop-blur-sm touch-manipulation"
+                    className="bg-gray-70 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 p-4 sm:p-5 md:p-6 group border border-gray-200 backdrop-blur-sm touch-manipulation"
                     variants={{
                       initial: { opacity: 0, y: 50, scale: 0.9 },
                       animate: { opacity: 1, y: 0, scale: 1 }
@@ -489,15 +490,18 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Chez Soft FS, nous exploitons une technologie de pointe pour transformer les entreprises et stimuler l'innovation. Notre équipe 
+                Chez Soft FS GROUP, nous exploitons une technologie de pointe pour transformer les entreprises et stimuler l'innovation. Notre équipe 
                 d'experts développeurs et ingénieurs livre des solutions évolutives qui améliorent l'efficacité et accélèrent la croissance.
               </motion.p>
 
             {/* Services */}
             <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
               <div className="flex items-start gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-eduka-blue rounded-full flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <div 
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-md" 
+                  style={{ backgroundColor: '#3B4D8F' }}
+                >
+                  <Medal className="w-5 h-5 sm:w-6 sm:h-6 text-white" style={{ color: 'white' }} />
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Excellence Technologique</h4>
@@ -509,7 +513,9 @@ export default function HomePage() {
               </div>
 
               <div className="flex items-start gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#A5A6C8' }}>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0" 
+                style={{ backgroundColor: '#3B4D8F' }}
+                >
                   <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
@@ -533,7 +539,7 @@ export default function HomePage() {
                   onClick={() => router.push('/About')}
                   className="text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition-colors touch-manipulation text-sm sm:text-base" 
                   style={{ backgroundColor: '#A5A6C8' }}
-                  onMouseEnter={(e) => e.target.style.backgroundColor = '#9293B8'}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = '#3B4D8F'}
                   onMouseLeave={(e) => e.target.style.backgroundColor = '#A5A6C8'}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -584,8 +590,8 @@ export default function HomePage() {
           transition={{ duration: 1.5 }}
         />
         
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/70" />
+        {/* Blue Overlay */}
+        <div className="absolute inset-0 bg-blue-800/80" />
 
         <div className="container mx-auto relative z-10">
           <motion.div 
@@ -779,8 +785,8 @@ export default function HomePage() {
                   <motion.button 
                     onClick={() => router.push(`/Services`)}
                     className="w-full text-white py-2 sm:py-2.5 px-4 rounded transition-colors text-sm sm:text-base touch-manipulation" 
-                    style={{ backgroundColor: '#3B4D8F' }}
-                    onMouseEnter={(e) => e.target.style.backgroundColor = '#9293B8'}
+                    style={{ backgroundColor: '#A5A6C8' }}
+                    onMouseEnter={(e) => e.target.style.backgroundColor = '#3B4D8F'}
                     onMouseLeave={(e) => e.target.style.backgroundColor = '#A5A6C8'}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -801,7 +807,7 @@ export default function HomePage() {
       
       {/* Why Choose Us Section */}
       <motion.section 
-        className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 to-white content-section"
+        className="py-12 sm:py-16 md:py-20 px-4 bg-gray-100 content-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -854,7 +860,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                Soft FS
+                Soft FS GROUP
               </motion.span> est votre meilleur choix.
             </motion.h2>
 
@@ -883,7 +889,7 @@ export default function HomePage() {
               return (
                 <motion.div
                   key={index}
-                  className="bg-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg border border-gray-100 group touch-manipulation"
+                  className="bg-gray-60 rounded-xl p-4 sm:p-6 md:p-8 shadow-lg border border-gray-100 group touch-manipulation"
                   variants={{
                     initial: { opacity: 0, y: 50, scale: 0.9 },
                     animate: { opacity: 1, y: 0, scale: 1 }
@@ -947,7 +953,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
           >
             <motion.div 
-              className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-gray-100 max-w-4xl mx-auto"
+              className="bg-gray-100 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-gray-100 max-w-4xl mx-auto"
               initial={{ scale: 0.9 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
@@ -969,7 +975,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Rejoignez des centaines de clients satisfaits qui ont choisi Soft FS pour accélérer leur parcours de transformation numérique.
+                Rejoignez des centaines de clients satisfaits qui ont choisi Soft FS GROUP pour accélérer leur parcours de transformation numérique.
               </motion.p>
               <motion.div 
                 className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"

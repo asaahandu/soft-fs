@@ -16,7 +16,9 @@ const XIcon = ({ size, className }) => (
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="text-white"
+    style={{ backgroundColor: '#3B4D8F' }}
+    >
       {/* Main footer content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -24,21 +26,18 @@ export default function Footer() {
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center group">
               <img 
-                src="/images/background.png" 
+                src="/images/logo1.png" 
                 alt="Soft FS Logo" 
                 className="h-8 w-auto sm:h-10 md:h-12 transition-all duration-500 transform group-hover:scale-110"
                 width={300}
                 height={100}
               />
-              <div>
-                <span className="text-white font-black italic text-xl pl-1 sm:text-2xl md:text-3xl">SOFT FS</span>
-              </div>
               <div className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
               </div>
             </div>
             <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xs">
-              Des solutions informatique qui boostent votre reussite.
+              SOFT FS GROUP est une entreprise de prestation de services informatiques et de creation digitale.
             </p>
             <div className="flex space-x-4 pt-2">
               <a 
@@ -75,7 +74,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white border-b border-gray-700 pb-2 mb-4">
-              Quick Links
+              Liens Rapide
             </h3>
             <nav>
               <ul className="space-y-3">
@@ -177,7 +176,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <h3 className="text-lg font-semibold text-white border-b border-gray-700 pb-2 mb-4">
-              Get in Touch
+              Contacter Nous
             </h3>
             <div className="space-y-4">
               <a 
@@ -192,7 +191,7 @@ export default function Footer() {
                 className="flex items-center gap-3 text-gray-300 hover:text-blue-400 transition-colors duration-200 group"
               >
                 <Phone size={18} className="text-blue-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm sm:text-base">+237 655571011</span>
+                <span className="text-sm sm:text-base">+237 657765185</span>
               </a>
               <div className="flex items-start gap-3 text-gray-300">
                 <MapPin size={18} className="text-blue-400 flex-shrink-0 mt-0.5" />
@@ -213,11 +212,11 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-800 bg-gray-950">
+      <div className="border-t border-gray-800 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <p className="text-gray-400 text-sm order-2 sm:order-1">
-              © 2025 soft fs.
+            <p className="text-gray-300 text-sm order-2 sm:order-1">
+              © softfsgroup2025.
             </p>
           </div>
         </div>
