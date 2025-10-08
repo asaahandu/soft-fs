@@ -62,7 +62,7 @@ const whyChooseUs = [
   {
     icon: Shield,
     title: "Expertise Prouvée",
-    description: "Plus de 10 ans d'expérience dans la livraison de solutions technologiques de pointe dans diverses industries avec un taux de satisfaction client de 99%. Notre équipe certifiée maîtrise les dernières technologies et méthodologies."
+    description: "Plus de 5 ans d'expérience dans la livraison de solutions technologiques de pointe dans diverses industries avec un taux de satisfaction client de 99%. Notre équipe certifiée maîtrise les dernières technologies et méthodologies."
   },
   {
     icon: Zap,
@@ -602,6 +602,7 @@ export default function AboutPage() {
                   src="/images/promoteur.jpg"
                   alt="Fondateur de Soft FS"
                   className="rounded-full w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-cover shadow-2xl"
+                  style={{ objectPosition: 'center 70%' }}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 />
@@ -1105,7 +1106,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Transformer Votre Entreprise avec Soft FS GROUP
+                Transformer votre entreprise avec Soft FS GROUP
               </motion.h3>
               <motion.p 
                 className="mb-6 max-w-2xl mx-auto opacity-90 text-sm sm:text-base lg:text-lg leading-relaxed"

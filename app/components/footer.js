@@ -17,7 +17,7 @@ const XIcon = ({ size, className }) => (
 export default function Footer() {
   return (
     <footer className="text-white"
-    style={{ backgroundColor: '#3B4D8F' }}
+    style={{ backgroundColor: '#2D3A7A' }}
     >
       {/* Main footer content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center group">
               <img 
-                src="/images/logo1.png" 
+                src="/images/logo2.png" 
                 alt="Soft FS Logo" 
                 className="h-8 w-auto sm:h-10 md:h-12 transition-all duration-500 transform group-hover:scale-110"
                 width={300}
@@ -214,8 +214,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-gray-800 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <p className="text-gray-300 text-sm order-2 sm:order-1">
+          <div className="flex justify-center items-center">
+            <p className="text-gray-300 text-sm text-center">
               © softfsgroup2025.
             </p>
           </div>

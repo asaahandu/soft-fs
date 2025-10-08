@@ -213,7 +213,7 @@ const servicesData = [
   },
   {
     id: 6,
-    image: "/images/programmer.jpg",
+    image: "/images/audit.jpg",
     title: "Audit des Systèmes d'Information & Fourniture Informatique",
     subtitle: "Optimisation IT & Solutions Matérielles",
     rating: 5,
@@ -752,7 +752,7 @@ export default function ServicesPage() {
         className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-slate-700 via-gray-800 to-eduka-blue relative overflow-hidden"
       >
         {/* Subtle overlay pattern */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent" />
+        <div className="absolute inset-0 bg-blue-700" />
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-12" />
         </div>
@@ -761,7 +761,7 @@ export default function ServicesPage() {
             variants={fadeInUp}
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 px-2"
           >
-            Prêt à Démarrer Votre Projet ?
+            Prêt à démarrer votre projet ?
           </motion.h2>
           
           <motion.p 

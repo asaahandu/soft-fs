@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Search, Phone, Mail, MapPin, X, Menu } from "lucide-react"
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Header() {
   const [isServiceFormOpen, setIsServiceFormOpen] = useState(false);
@@ -80,17 +81,19 @@ export default function Header() {
           }`}>
             {/* Logo Section */}
             <div className="flex items-center">
-              <img 
-                src="/images/logo1.png" 
-                alt="Soft FS Logo" 
-                className={`w-auto transition-all duration-500 transform hover:scale-105 ${
-                  isScrolled 
-                    ? 'h-10 sm:h-12' 
-                    : 'h-14 sm:h-16 md:h-18'
-                }`}
-                width={300}
-                height={100}
-              />
+              <Link href="/" className="cursor-pointer">
+                <img 
+                  src="/images/logo1.png" 
+                  alt="Soft FS Logo" 
+                  className={`w-auto transition-all duration-500 transform ${
+                    isScrolled 
+                      ? 'h-10 sm:h-12' 
+                      : 'h-14 sm:h-16 md:h-18'
+                  }`}
+                  width={300}
+                  height={100}
+                />
+              </Link>
             </div>
 
             {/* Desktop Navigation */}

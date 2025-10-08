@@ -213,9 +213,10 @@ export default function HomePage() {
                 opacity: index === currentSlide ? 1 : 0 
               }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-cover bg-no-repeat"
               style={{
                 backgroundImage: `url('${image.url}')`,
+                backgroundPosition: 'center 35%'
               }}
             />
           ))}
@@ -546,24 +547,19 @@ export default function HomePage() {
                 >
                   En Savoir Plus
                 </motion.button>
-                <motion.div 
-                  className="flex items-center gap-2 sm:gap-3"
+                <motion.a 
+                  href="tel:+237657765185"
+                  className="border-2 border-eduka-blue text-eduka-blue hover:bg-blue-700 hover:text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base transition-colors touch-manipulation flex items-center justify-center gap-2"
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <motion.div 
-                    className="w-10 h-10 sm:w-12 sm:h-12 bg-eduka-blue rounded-full flex items-center justify-center"
-                    whileHover={{ rotate: 10, scale: 1.1 }}
-                  >
-                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                  </motion.div>
-                  <div className="text-center sm:text-left">
-                    <div className="text-xs sm:text-sm text-gray-600">Appelez à tout moment</div>
-                    <div className="font-bold text-gray-800 text-sm sm:text-base">+237 657765185</div>
-                  </div>
-                </motion.div>
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+                  Appelez nous
+                </motion.a>
               </motion.div>
             </motion.div>
           </motion.div>

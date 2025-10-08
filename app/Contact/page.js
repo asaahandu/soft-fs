@@ -198,9 +198,10 @@ export default function ContactPage() {
       <section className="relative bg-gradient-to-r from-gray-900 to-gray-700 py-16 sm:py-20 lg:py-24 px-4 overflow-hidden">
         {/* Background Image */}
         <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-no-repeat"
           style={{
             backgroundImage: `url('/images/contact.jpg')`,
+            backgroundPosition: 'center 35%'
           }}
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -928,7 +929,7 @@ export default function ContactPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Prêt à Démarrer Votre Projet ?
+            Prêt à démarrer votre projet ?
           </motion.h2>
           
           <motion.p 
